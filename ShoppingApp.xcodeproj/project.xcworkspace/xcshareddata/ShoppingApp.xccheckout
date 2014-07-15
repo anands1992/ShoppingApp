@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FDD09FC3-0D78-4F0B-BF49-37552F0CEE33</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ShoppingApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>77780983-DE15-40C5-B79C-E703CB87891E</key>
+		<string>ssh://codebase.qburst.com/anands/world-cup-betting.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ShoppingApp/ShoppingApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>77780983-DE15-40C5-B79C-E703CB87891E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://codebase.qburst.com/anands/world-cup-betting.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>77780983-DE15-40C5-B79C-E703CB87891E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>77780983-DE15-40C5-B79C-E703CB87891E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyApp2A</string>
+		</dict>
+	</array>
+</dict>
+</plist>
