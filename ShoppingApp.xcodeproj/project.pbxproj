@@ -543,6 +543,7 @@
 		22956212196589C600BFE3CC = {
 			isa = PBXGroup;
 			children = (
+				22295A43196BC9AF006EEB1C /* Main_iPhone.storyboard */,
 				22956224196589C600BFE3CC /* ShoppingApp */,
 				22956249196589C700BFE3CC /* ShoppingAppTests */,
 				2295621D196589C600BFE3CC /* Frameworks */,
@@ -705,7 +706,6 @@
 				22FF043C196A6E2C00B4B721 /* Constants.h */,
 				2295622E196589C600BFE3CC /* ShoppingAppDelegate.m */,
 				2295622D196589C600BFE3CC /* ShoppingAppDelegate.h */,
-				22295A43196BC9AF006EEB1C /* Main_iPhone.storyboard */,
 				22956233196589C600BFE3CC /* Main_iPad.storyboard */,
 				22F85F0B196D02BB008B24E6 /* Images.xcassets */,
 			);
@@ -1579,6 +1579,7 @@
 				22295A44196BC9AF006EEB1C /* Base */,
 			);
 			name = Main_iPhone.storyboard;
+			path = ShoppingApp;
 			sourceTree = "<group>";
 		};
 		22956227196589C600BFE3CC /* InfoPlist.strings */ = {

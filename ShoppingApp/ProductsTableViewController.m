@@ -18,6 +18,8 @@
     int i;
     NSDictionary *Products;
     NSArray *productTable;
+    PFObject *productImages;
+    NSMutableArray *pictureArray;
 }
 @end
 
@@ -37,7 +39,14 @@
 {
     [super viewDidLoad];
     Products = [NSDictionary alloc];
-    [self.tableView reloadData];
+    productImages = [PFObject objectWithClassName:@"Products"];
+    PFFile *userImageFile = productImages[@"ProductImage"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            image = [pictureArray mutableCopy];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,14 +71,14 @@
     static NSString *cellIdentifier = @"ProductCell";
     ProductsTableViewCell *cell = (ProductsTableViewCell*)
     [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
     if(cell == nil)
     {
         cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.productName.text = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@1];
-    cell.productImage.image = [UIImage imageNamed:[[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@2]];
+    cell.productName.text = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
+
+//    cell.productImage.image = [UIImage imageNamed:[[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductImage"]];
     
     return cell;
 }

@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REJ-ga-EuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="510" y="-674"/>
+            <point key="canvasLocation" x="494" y="-666"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="GtI-f1-Dws">
@@ -549,6 +549,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRD-j6-IYa">
+                                <rect key="frame" x="203" y="209" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtC-cY-1sI">
+                                <rect key="frame" x="148" y="213" width="47" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -557,6 +569,7 @@
                         <outlet property="itemDescription" destination="icl-o7-6aD" id="91c-nO-jct"/>
                         <outlet property="itemImage" destination="Xrz-nQ-881" id="YWT-NF-HAg"/>
                         <outlet property="itemName" destination="YJc-aM-MCe" id="mMC-GU-pjo"/>
+                        <outlet property="itemType" destination="cRD-j6-IYa" id="kn5-ZD-0lu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKi-dz-PJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -734,7 +747,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SzA-7D-VYr"/>
-        <segue reference="c0f-ZO-Qnr"/>
+        <segue reference="EFg-73-SxF"/>
+        <segue reference="1PN-xP-HtC"/>
     </inferredMetricsTieBreakers>
 </document>

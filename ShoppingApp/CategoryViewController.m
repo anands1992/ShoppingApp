@@ -17,8 +17,7 @@
     NSDictionary *categories,*category1,*category2,*watch1,*watch2,*watch3,*watch4,*phone1,*phone2,*phone3,*phone4;
     NSMutableArray *categoryTable,*watchTable,*phoneTable;
     int i;
-    PFObject *object;
-}
+    }
 
 @end
 
@@ -93,9 +92,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     i = indexPath.row;
-    
-    categories = [categoryTable objectAtIndex:indexPath.row];
-    
+   
     [self performSegueWithIdentifier:PUSHTOPRODUCTSCREEN sender:self];
 }
 
@@ -108,12 +105,14 @@
             ProductsTableViewController *products = [segue destinationViewController];
             
             products.categoryDetailViews = watchTable;
+            products.passedCategory = @"Watches";
         }
         else if(i == 1)
         {
             ProductsTableViewController *products = [segue destinationViewController];
             
             products.categoryDetailViews = phoneTable;
+            products.passedCategory = @"Phones";
         }
     }
 }
@@ -129,38 +128,26 @@
 
 -(void)watches
 {
-    watchTable= [[NSMutableArray alloc]init];
     
-    watch1 = @{@1:SUBMARINER,@2:@"submariner date.jpg",@3:watchDecsription1};
-    watch2 = @{@1:YACHTMASTER,@2:@"Rolex Yacht Master Rolesium platinum dial.jpg",@3:watchDecsription2};
-    watch3 = @{@1:DAYTONA,@2:@"Oyster perpetual.jpg",@3:watchDecsription3};
-    watch4 = @{@1:MILGAUSS,@2:@"Milgauss.jpg",@3:watchDecsription4};
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
-        [watchTable addObject:watch1];
-        [watchTable addObject:watch2];
-        [watchTable addObject:watch3];
-        [watchTable addObject:watch4];
+    [query whereKey:@"ProductType" equalTo:@"Watch"];
     
-    object = [PFObject objectWithClassName:@"Products"];
-    object[@"Watches"] = watchTable;
+    NSArray *findArray = [query findObjects];
+    
+    watchTable = [[NSMutableArray alloc] initWithArray:findArray];
 }
 
 -(void)phones
 {
-    phoneTable = [[NSMutableArray alloc]init];
     
-    phone1 = @{@1:GALAXYS5,@2:@"S5.jpg",@3:GALAXYS5DESCRIPTION};
-    phone2 = @{@1:IPHONE,@2:@"5S.jpeg",@3:IPHONEDESCRIPTION};
-    phone3 = @{@1:HTC,@2:@"htcone.jpeg",@3:HTCDESCRIPTION};
-    phone4 = @{@1:XPERIA,@2:@"xperia.jpeg",@3:XPERIADESCRIPTION};
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
-        [phoneTable addObject:phone1];
-        [phoneTable addObject:phone2];
-        [phoneTable addObject:phone3];
-        [phoneTable addObject:phone4];
+    [query whereKey:@"ProductType" equalTo:@"Phone"];
     
-    object = [PFObject objectWithClassName:@"Products"];
-    object[@"Phones"] = phoneTable;
+    NSArray *findArray = [query findObjects];
+    
+    phoneTable = [[NSMutableArray alloc] initWithArray:findArray];
 }
 
 @end

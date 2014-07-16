@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FDD09FC3-0D78-4F0B-BF49-37552F0CEE33</string>
+	<string>40915BC1-6FDE-41A8-AB81-7A36B51764D7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ShoppingApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>77780983-DE15-40C5-B79C-E703CB87891E</key>
-		<string>ssh://codebase.qburst.com/anands/world-cup-betting.git</string>
+		<key>FB46660C-C0A9-4305-AEBC-F5CF80027B51</key>
+		<string>ssh://codebase.qburst.com/anands/shopping-app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ShoppingApp/ShoppingApp.xcodeproj/project.xcworkspace</string>
+	<string>ShoppingApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>77780983-DE15-40C5-B79C-E703CB87891E</key>
-		<string>../../..</string>
+		<key>FB46660C-C0A9-4305-AEBC-F5CF80027B51</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://codebase.qburst.com/anands/world-cup-betting.git</string>
+	<string>ssh://codebase.qburst.com/anands/shopping-app.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>77780983-DE15-40C5-B79C-E703CB87891E</string>
+	<string>FB46660C-C0A9-4305-AEBC-F5CF80027B51</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>77780983-DE15-40C5-B79C-E703CB87891E</string>
+			<string>FB46660C-C0A9-4305-AEBC-F5CF80027B51</string>
 			<key>IDESourceControlWCCName</key>
-			<string>MyApp2A</string>
+			<string>shopping-app</string>
 		</dict>
 	</array>
 </dict>

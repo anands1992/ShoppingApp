@@ -7,7 +7,7 @@
 //
 
 #import "AddItemViewController.h"
-#import "ProductsTableViewController.h"
+#import <Parse/Parse.h>
 
 @interface AddItemViewController ()
 
@@ -86,9 +86,27 @@
         [addItem setObject:self.itemName.text forKey:@1];
         [addItem setObject:self.itemImage.image forKey:@2];
         [addItem setObject:self.itemDescription.text forKey:@3];
-        ProductsTableViewController *table;
-        [table.categoryDetailViews addObject:addItem];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [addItem setObject:self.itemType.text forKey:@4];
+        
+        PFObject *products = [PFObject objectWithClassName:@"Products"];
+        
+        products[@"ProductName"] = self.itemName.text;
+        
+        products[@"ProductDescription"] = self.itemDescription.text;
+        
+        products[@"ProductName"] = self.itemName.text;
+        
+        products[@"ProductType"] = self.itemType.text;
+        
+        NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
+        
+        PFFile *imagefile = [PFFile fileWithData:imagedata];
+        
+        products[@"ProductImage"] = imagefile;
+        
+        [products saveInBackground];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 @end

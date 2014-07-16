@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UITextField *itemName;
 @property (weak, nonatomic) IBOutlet UITextView *itemDescription;
+@property (weak, nonatomic) IBOutlet UITextField *itemType;
 @property (weak, nonatomic) IBOutlet UIButton *addItem;
 @property (strong,nonatomic) NSMutableArray *transferdata;
 @end
