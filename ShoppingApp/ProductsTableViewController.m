@@ -78,7 +78,13 @@
     
     cell.productName.text = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
 
-//    cell.productImage.image = [UIImage imageNamed:[[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductImage"]];
+    PFFile *imageFile = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
+    
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            cell.productImage.image = [UIImage imageWithData:data];
+        }
+    }];
     
     return cell;
 }
