@@ -7,6 +7,7 @@
 //
 
 #import "ProductDetailViewController.h"
+#import <Parse/Parse.h>
 #import "Constants.h"
 
 @interface ProductDetailViewController ()
@@ -28,19 +29,18 @@
 
 - (void)viewDidLoad
 {
-    self.productName.text = [_productDetailViews objectForKey:@1];
+    self.productName.text = [_productDetailViews valueForKey:@"ProductName"];
     
-    self.productImage.image = [UIImage imageNamed:[_productDetailViews objectForKey:@2]];
+    PFFile *imageFile = [_productDetailViews valueForKey:@"ProductImage"];
     
-    self.productDescription.text = [_productDetailViews objectForKey:@3];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.productImage.image = [UIImage imageWithData:data];
+        }
+    }];
+        self.productDescription.text = [_productDetailViews valueForKey:@"ProductDescription"];
     
     [self.productScroll sizeToFit];
-    
-    self.productName.text = [_productDetailViews objectForKey:@1];
-    
-    self.productImage.image = [UIImage imageNamed:[_productDetailViews objectForKey:@2]];
-    
-    self.productDescription.text = [_productDetailViews objectForKey:@3];
     
     _productDescription.numberOfLines = 0; //will wrap text in new line
     

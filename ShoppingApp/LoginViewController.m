@@ -30,12 +30,26 @@
     self.Password.secureTextEntry = YES;
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+60, self.view.frame.size.width, self.view.frame.size.height);
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if(textField == self.userName)
+    {
         [self.Password becomeFirstResponder];
+    }
     else
-        [ self Login:nil];
+    {
+        [self Login:nil];
+    }
     return YES;
 }
 
@@ -74,8 +88,7 @@
 
                                             }
                                         }];
-        
-    
 }
+
 
 @end

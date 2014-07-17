@@ -109,6 +109,8 @@
     {
         AddItemViewController *addItem = [segue destinationViewController];
         
+        addItem.itemType = _key;
+        
         addItem.transferdata = productArray;
     }
 }

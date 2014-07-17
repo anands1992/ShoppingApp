@@ -19,6 +19,7 @@
 #define PUSHTOLOGINSCREEENFROMCATEGORIESTAB @"CategoryLoginModal"
 #define PUSHTOLOGINSCREENFROMOFFERSTAB @"OfferLoginModal"
 #define ADDPRODUCT @"Add Product"
+#define ADDCATEGORY @"AddCategory"
 
 
 //Logged In Status

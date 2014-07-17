@@ -15,6 +15,7 @@
 		22295A42196BC8C8006EEB1C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A21196BC0A7006EEB1C /* Parse.framework */; };
 		22295A45196BC9AF006EEB1C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22295A43196BC9AF006EEB1C /* Main_iPhone.storyboard */; };
 		223CB7E019779E0300812FB0 /* RolexLogo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 223CB7DF19779E0300812FB0 /* RolexLogo.jpeg */; };
+		223D9B751977AFD200583960 /* AddCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 223D9B741977AFD200583960 /* AddCategoryViewController.m */; };
 		2295621F196589C600BFE3CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2295621E196589C600BFE3CC /* Foundation.framework */; };
 		22956221196589C600BFE3CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22956220196589C600BFE3CC /* CoreGraphics.framework */; };
 		22956223196589C600BFE3CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22956222196589C600BFE3CC /* UIKit.framework */; };
@@ -164,6 +165,8 @@
 		22295A21196BC0A7006EEB1C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ShoppingApp/Parse.framework; sourceTree = "<group>"; };
 		22295A44196BC9AF006EEB1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		223CB7DF19779E0300812FB0 /* RolexLogo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RolexLogo.jpeg; sourceTree = "<group>"; };
+		223D9B731977AFD200583960 /* AddCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddCategoryViewController.h; path = ../AddCategoryViewController.h; sourceTree = "<group>"; };
+		223D9B741977AFD200583960 /* AddCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddCategoryViewController.m; path = ../AddCategoryViewController.m; sourceTree = "<group>"; };
 		2295621B196589C600BFE3CC /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2295621E196589C600BFE3CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22956220196589C600BFE3CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -697,6 +700,8 @@
 				2295625A19658A8400BFE3CC /* ProductsTableViewCell.m */,
 				22D722E719666750008EAE83 /* ProductDetailViewController.h */,
 				22D722E819666750008EAE83 /* ProductDetailViewController.m */,
+				223D9B731977AFD200583960 /* AddCategoryViewController.h */,
+				223D9B741977AFD200583960 /* AddCategoryViewController.m */,
 				22B39965197509BF00578609 /* AddItemViewController.h */,
 				22B39966197509BF00578609 /* AddItemViewController.m */,
 			);
@@ -1548,6 +1553,7 @@
 				2295622B196589C600BFE3CC /* main.m in Sources */,
 				22956238196589C600BFE3CC /* CategoryViewController.m in Sources */,
 				22D722EC1966675E008EAE83 /* OfferDetailViewController.m in Sources */,
+				223D9B751977AFD200583960 /* AddCategoryViewController.m in Sources */,
 				22D722E919666750008EAE83 /* ProductDetailViewController.m in Sources */,
 				22E3D581197000B600B21281 /* RegisterViewController.m in Sources */,
 				22D5E9B81974D9E400958A23 /* CategoryTableViewCell.m in Sources */,

@@ -1,20 +1,21 @@
 //
-//  AddItemViewController.m
+//  AddCategoryViewController.m
 //  ShoppingApp
 //
-//  Created by qbadmin on 15/07/14.
+//  Created by qbadmin on 17/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
-#import "AddItemViewController.h"
-#import "ProductsTableViewController.h"
+#import "AddCategoryViewController.h"
 #import <Parse/Parse.h>
 
-@interface AddItemViewController ()
-
+@interface AddCategoryViewController ()
+{
+    NSMutableArray *categoryDetails;
+}
 @end
 
-@implementation AddItemViewController
+@implementation AddCategoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,31 +29,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error)
+        {
+            categoryDetails = [[NSMutableArray alloc] initWithArray:objects];
+            // The find succeeded. The first 100 objects are available in objects
+        }
+        else
+        {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [UIView animateWithDuration:1.5 animations:^{
-        
-         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
-        
-    }];
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [UIView animateWithDuration:1.5 animations:^{
-        
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
-        
-    }];
-}
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -64,7 +60,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.itemImage.image = chosenImage;
+    self.categoryImage.image = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -86,17 +82,17 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (IBAction)AddProduct:(id)sender
+- (IBAction)addCategory:(id)sender
 {
-    if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""])
+    if ([self.categoryName.text isEqualToString:@""])
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               
                               initWithTitle:@"Error!"
-                                    message:@"Fields not Filled"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
+                              message:@"Fields not Filled"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil];
         [alert show];
     }
     else
@@ -105,23 +101,16 @@
         
         PFObject *categories = [PFObject objectWithClassName:@"Categories"];
         
-        PFObject *products = [PFObject objectWithClassName:@"Products"];
+        categories[@"CategoryName"] = self.categoryName.text;
         
-        products[@"ProductName"] = self.itemName.text;
-        
-        products[@"ProductDescription"] = self.itemDescription.text;
-        
-        products[@"ProductType"] = self.itemType;
-        
-        NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
+        NSData *imagedata = UIImageJPEGRepresentation(self.categoryImage.image, 0);
         
         PFFile *imagefile = [PFFile fileWithData:imagedata];
         
-        products[@"ProductImage"] = imagefile;
+        categories[@"categoryImage"] = imagefile;
         
-        categories[@"Products"] = products;
-        
-        [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [categories saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
             if (succeeded)
             {
                 NSLog(@"Saved.");
@@ -132,14 +121,14 @@
             }
         }];
         
-        [addItem setObject:self.itemName.text forKey:@1];
+        [addItem setObject:self.categoryName.text forKey:@1];
         [addItem setObject:imagefile forKey:@2];
-        [addItem setObject:self.itemDescription.text forKey:@3];
-        [addItem setObject:self.itemType forKey:@4];
         
-        [self.transferdata addObject:addItem];
+        [categoryDetails addObject:addItem];
         
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    
 }
+
 @end

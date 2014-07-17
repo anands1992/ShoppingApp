@@ -9,13 +9,16 @@
 #import "CategoryViewController.h"
 #import "CategoryTableViewCell.h"
 #import "ProductsTableViewController.h"
+#import "AddCategoryViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
 
 @interface CategoryViewController()
 {
-    NSDictionary *categories,*category1,*category2,*watch1,*watch2,*watch3,*watch4,*phone1,*phone2,*phone3,*phone4;
+    NSDictionary *category1,*category2,*watch1,*watch2,*watch3,*watch4,*phone1,*phone2,*phone3,*phone4;
+    
     NSMutableArray *categoryTable,*watchTable,*phoneTable;
+    
     int i;
     }
 
@@ -24,13 +27,12 @@
 @implementation CategoryViewController
 
 #pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
-    categoryTable = [[NSMutableArray alloc]init];
-    
-    categories=[NSDictionary alloc];
-    
     [super viewDidLoad];
+    
+    categoryTable = [[NSMutableArray alloc]init];
     
     if([[NSUserDefaults standardUserDefaults]boolForKey:LOGGEDINSTATUS])
     {
@@ -44,15 +46,22 @@
     [self watches];
     
     [self phones];
-    
-    category1 = @{@1: WATCHES,@2: @"rolex.jpg"};
-    
-    category2 = @{@1: PHONES, @2: @"phones.jpg"};
-
-    [categoryTable addObject:category1];
-    
-    [categoryTable addObject:category2];
-    
+   
+    PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             categoryTable = [[NSMutableArray alloc] initWithArray:objects];
+             // The find succeeded. The first 100 objects are available in objects
+         }
+         else
+         {
+             // Log details of the failure
+             NSLog(@"Error: %@ %@", error, [error userInfo]);
+         }
+         [self.tableView reloadData];
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +69,10 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 
 #pragma mark - UITableView
 
@@ -79,11 +92,15 @@
         cell = [[CategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    categories = [categoryTable objectAtIndex:indexPath.row];
+    cell.categoryName.text = [[categoryTable objectAtIndex:indexPath.row]objectForKey:@"CategoryName"];
     
-    cell.categoryName.text = [categories objectForKey:@1];
+    PFFile *imageFile = [[categoryTable objectAtIndex:indexPath.row]objectForKey:@"categoryImage"];
     
-    cell.categoryImage.image = [UIImage imageNamed:[categories objectForKey:@2]];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            cell.categoryImage.image = [UIImage imageWithData:data];
+        }
+    }];
     
     return cell;
 }
@@ -103,14 +120,14 @@
         {
             ProductsTableViewController *products = [segue destinationViewController];
             
-            products.key = @"Watch";
+            products.key = @"Phone";
             
         }
         else if(i == 1)
         {
             ProductsTableViewController *products = [segue destinationViewController];
             
-            products.key = @"Phone";
+            products.key = @"Watch";
             
         }
     }
@@ -125,9 +142,13 @@
     [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
 }
 
+- (IBAction)addCategory:(id)sender
+{
+    [self performSegueWithIdentifier:ADDCATEGORY sender:self];
+}
+
 -(void)watches
 {
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
     [query whereKey:@"ProductType" equalTo:@"Watch"];
