@@ -39,7 +39,6 @@
     else
     {
         [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
-        
     }
     
     [self watches];
@@ -104,15 +103,15 @@
         {
             ProductsTableViewController *products = [segue destinationViewController];
             
-            products.categoryDetailViews = watchTable;
-            products.passedCategory = @"Watches";
+            products.key = @"Watch";
+            
         }
         else if(i == 1)
         {
             ProductsTableViewController *products = [segue destinationViewController];
             
-            products.categoryDetailViews = phoneTable;
-            products.passedCategory = @"Phones";
+            products.key = @"Phone";
+            
         }
     }
 }

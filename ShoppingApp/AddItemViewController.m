@@ -7,6 +7,7 @@
 //
 
 #import "AddItemViewController.h"
+#import "ProductsTableViewController.h"
 #import <Parse/Parse.h>
 
 @interface AddItemViewController ()
@@ -83,10 +84,7 @@
     {
         NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
         
-        [addItem setObject:self.itemName.text forKey:@1];
-        [addItem setObject:self.itemImage.image forKey:@2];
-        [addItem setObject:self.itemDescription.text forKey:@3];
-        [addItem setObject:self.itemType.text forKey:@4];
+   
         
         PFObject *products = [PFObject objectWithClassName:@"Products"];
         
@@ -94,9 +92,7 @@
         
         products[@"ProductDescription"] = self.itemDescription.text;
         
-        products[@"ProductName"] = self.itemName.text;
-        
-        products[@"ProductType"] = self.itemType.text;
+        products[@"ProductType"] = self.itemType;
         
         NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
         
@@ -104,9 +100,25 @@
         
         products[@"ProductImage"] = imagefile;
         
-        [products saveInBackground];
+        [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded)
+            {
+                NSLog(@"Saved.");
+            }
+            else
+            {
+                NSLog(@"%@", error);
+            }
+        }];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        [addItem setObject:self.itemName.text forKey:@1];
+        [addItem setObject:imagefile forKey:@2];
+        [addItem setObject:self.itemDescription.text forKey:@3];
+        [addItem setObject:self.itemType forKey:@4];
+        
+        [self.transferdata addObject:addItem];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 @end

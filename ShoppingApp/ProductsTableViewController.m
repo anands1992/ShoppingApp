@@ -19,7 +19,7 @@
     NSDictionary *Products;
     NSArray *productTable;
     PFObject *productImages;
-    NSMutableArray *pictureArray;
+    NSMutableArray *productArray;
 }
 @end
 
@@ -38,15 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Products = [NSDictionary alloc];
-    productImages = [PFObject objectWithClassName:@"Products"];
-    PFFile *userImageFile = productImages[@"ProductImage"];
-    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-            image = [pictureArray mutableCopy];
-        }
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +47,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    
+    [query whereKey:@"ProductType" equalTo:self.key];
+    
+    NSArray *findArray = [query findObjects];
+    
+    productArray = [[NSMutableArray alloc] initWithArray:findArray];
+    
     [self.tableView reloadData];
 }
 
@@ -63,7 +62,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.categoryDetailViews.count;
+    return productArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,9 +75,9 @@
         cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.productName.text = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
+    cell.productName.text = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
 
-    PFFile *imageFile = [[self.categoryDetailViews objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
+    PFFile *imageFile = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
@@ -93,7 +92,7 @@
 {
     i = indexPath.row;
     
-    Products = [self.categoryDetailViews objectAtIndex:indexPath.row];
+    Products = [productArray objectAtIndex:indexPath.row];
     
     [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
 }
@@ -110,7 +109,7 @@
     {
         AddItemViewController *addItem = [segue destinationViewController];
         
-        addItem.transferdata = self.categoryDetailViews;
+        addItem.transferdata = productArray;
     }
 }
 
@@ -118,6 +117,5 @@
 {
     [self performSegueWithIdentifier:ADDPRODUCT sender:self];
 }
-
 
 @end

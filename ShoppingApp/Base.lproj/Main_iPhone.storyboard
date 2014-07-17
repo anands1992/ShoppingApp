@@ -549,18 +549,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRD-j6-IYa">
-                                <rect key="frame" x="203" y="209" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtC-cY-1sI">
-                                <rect key="frame" x="148" y="213" width="47" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -569,7 +557,6 @@
                         <outlet property="itemDescription" destination="icl-o7-6aD" id="91c-nO-jct"/>
                         <outlet property="itemImage" destination="Xrz-nQ-881" id="YWT-NF-HAg"/>
                         <outlet property="itemName" destination="YJc-aM-MCe" id="mMC-GU-pjo"/>
-                        <outlet property="itemType" destination="cRD-j6-IYa" id="kn5-ZD-0lu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKi-dz-PJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -620,8 +607,8 @@
                                     <segue destination="TRB-3S-sI2" kind="push" id="zjY-6a-aD6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RolexLogo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5eF-gh-zdJ">
-                                <rect key="frame" x="93" y="95" width="134" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RolexLogo.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-FB-UxK">
+                                <rect key="frame" x="85" y="114" width="150" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -737,7 +724,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RolexLogo.jpg" width="1600" height="1115"/>
+        <image name="RolexLogo.jpeg" width="238" height="212"/>
         <image name="rsz_1404493177_680537-time_new.png" width="30" height="30"/>
         <image name="rsz_1404493248_offer.png" width="30" height="30"/>
     </resources>

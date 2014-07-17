@@ -12,7 +12,7 @@
 
 @property (strong,nonatomic) NSMutableArray *categoryDetailViews;
 
-@property(strong,nonatomic) NSString *passedCategory;
+@property(strong,nonatomic) NSString *key;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItem;
 
