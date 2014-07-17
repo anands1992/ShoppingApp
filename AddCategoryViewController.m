@@ -7,6 +7,7 @@
 //
 
 #import "AddCategoryViewController.h"
+#import "ProductsTableViewController.h"
 #import <Parse/Parse.h>
 
 @interface AddCategoryViewController ()
@@ -66,10 +67,9 @@
     
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 - (IBAction)addImage:(id)sender
@@ -122,11 +122,12 @@
         }];
         
         [addItem setObject:self.categoryName.text forKey:@1];
+        
         [addItem setObject:imagefile forKey:@2];
         
         [categoryDetails addObject:addItem];
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

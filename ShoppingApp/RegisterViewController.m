@@ -45,6 +45,16 @@
     return YES;
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y - 60, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y+60, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];

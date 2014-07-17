@@ -42,11 +42,15 @@
     {
         [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
     }
-    
-    [self watches];
-    
-    [self phones];
-   
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -62,16 +66,6 @@
          }
          [self.tableView reloadData];
      }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView
@@ -116,20 +110,10 @@
 {
     if ([segue.identifier isEqualToString:PUSHTOPRODUCTSCREEN])
     {
-        if (i == 0)
-        {
             ProductsTableViewController *products = [segue destinationViewController];
             
-            products.key = @"Phone";
-            
-        }
-        else if(i == 1)
-        {
-            ProductsTableViewController *products = [segue destinationViewController];
-            
-            products.key = @"Watch";
-            
-        }
+            products.key = [[categoryTable objectAtIndex:i]objectForKey:@"CategoryName"];
+        
     }
 }
 
@@ -145,29 +129,6 @@
 - (IBAction)addCategory:(id)sender
 {
     [self performSegueWithIdentifier:ADDCATEGORY sender:self];
-}
-
--(void)watches
-{
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-    
-    [query whereKey:@"ProductType" equalTo:@"Watch"];
-    
-    NSArray *findArray = [query findObjects];
-    
-    watchTable = [[NSMutableArray alloc] initWithArray:findArray];
-}
-
--(void)phones
-{
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-    
-    [query whereKey:@"ProductType" equalTo:@"Phone"];
-    
-    NSArray *findArray = [query findObjects];
-    
-    phoneTable = [[NSMutableArray alloc] initWithArray:findArray];
 }
 
 @end

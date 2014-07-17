@@ -37,7 +37,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:1.5 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         
          self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
         
@@ -46,13 +46,12 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:1.5 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
         
     }];
 }
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -73,7 +72,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 - (IBAction)addImage:(id)sender
