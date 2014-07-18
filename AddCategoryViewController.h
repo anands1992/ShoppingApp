@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddCategoryViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface AddCategoryViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *categoryImage;
 

@@ -12,9 +12,15 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *productName;
+
 @property (weak, nonatomic) IBOutlet UILabel *productDescription;
+
 @property (weak, nonatomic) IBOutlet UIButton *Purchase;
+
 @property (weak,nonatomic) NSDictionary *productDetailViews;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *productScroll;
+
 @end

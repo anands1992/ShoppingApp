@@ -19,7 +19,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -33,12 +34,14 @@
     
     PFFile *imageFile = [_productDetailViews valueForKey:@"ProductImage"];
     
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+    {
         if (!error) {
             self.productImage.image = [UIImage imageWithData:data];
         }
     }];
-        self.productDescription.text = [_productDetailViews valueForKey:@"ProductDescription"];
+    
+    self.productDescription.text = [_productDetailViews valueForKey:@"ProductDescription"];
     
     [self.productScroll sizeToFit];
     

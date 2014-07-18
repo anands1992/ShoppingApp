@@ -30,15 +30,21 @@
 {
     [super viewDidLoad];
     
-    product1 = @{@1: SUBMARINER,@2: @"submariner date.jpg",@3:OFFER1};
-    
-    product2 = @{@1: YACHTMASTER, @2: @"Rolex Yacht Master Rolesium platinum dial.jpg",@3: OFFER1};
-    
-    product3 = @{@1: DAYTONA, @2: @"Oyster perpetual.jpg",@3:OFFER2};
-    
-    product4 = @{@1: MILGAUSS, @2: @"Milgauss.jpg",@3:OFFER2};
-    
-    offerTable = @[product1,product2,product3,product4];
+    PFQuery *query = [PFQuery queryWithClassName:@"Offers"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             offerTable = [[NSMutableArray alloc] initWithArray:objects];
+             // The find succeeded. The first 100 objects are available in objects
+         }
+         else
+         {
+             // Log details of the failure
+             NSLog(@"Error: %@ %@", error, [error userInfo]);
+         }
+         [self.tableView reloadData];
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,7 +55,7 @@
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return offerTable.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,18 +69,25 @@
         cell = [[OffersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    dict = [offerTable objectAtIndex:indexPath.row%4];
+    dict = [offerTable objectAtIndex:indexPath.row];
     
-    cell.offerImage.image = [UIImage imageNamed:[dict objectForKey:@2]];
+    cell.offerName.text = [dict objectForKey:@"ProductName"];
     
-    cell.offerDescription.text = [dict objectForKey:@1];
+    PFFile *imageFile = [[offerTable objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            cell.offerImage.image = [UIImage imageWithData:data];
+        }
+    }];
+
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dict = [offerTable objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
 }
 

@@ -9,6 +9,7 @@
 #import "OfferDetailViewController.h"
 #import "ProductDetailViewController.h"
 #import "Constants.h"
+#import <Parse/Parse.h>
 @interface OfferDetailViewController ()
 
 @end
@@ -27,14 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.offerName.text = [_offerDetailViews objectForKey:@1];
-    self.offerImage.image = [UIImage imageNamed:[_offerDetailViews objectForKey:@2]];
-    self.offerDescription.text = [_offerDetailViews objectForKey:@3];
-    
-    self.offerDescription.numberOfLines = 0; //will wrap text in new line
-    
-    [self.offerDescription sizeToFit];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +38,24 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.offerName.text = [_offerDetailViews objectForKey:@"ProductName"];
+    
+    PFFile *imageFile = [_offerDetailViews objectForKey:@"ProductImage"];
+    
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.offerImage.image = [UIImage imageWithData:data];
+        }
+    }];
+    
+    
+    self.offerDescription.text = [_offerDetailViews objectForKey:@"ProductDescription"];
+    
+    self.offerDescription.numberOfLines = 0; //will wrap text in new line
+    
+    [self.offerDescription sizeToFit];
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -54,7 +65,6 @@
         ProductDetailViewController *products = [segue destinationViewController];
         
         products.productDetailViews = _offerDetailViews;
-        
     }
 }
 #pragma mark - IBAction

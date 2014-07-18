@@ -13,6 +13,7 @@
 @interface AddCategoryViewController ()
 {
     NSMutableArray *categoryDetails;
+    int flag;
 }
 @end
 
@@ -51,6 +52,17 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
@@ -63,12 +75,16 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.categoryImage.image = chosenImage;
     
+    flag = 1;
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    flag = 0;
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -84,7 +100,7 @@
 
 - (IBAction)addCategory:(id)sender
 {
-    if ([self.categoryName.text isEqualToString:@""])
+    if ([self.categoryName.text isEqualToString:@""]||flag == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               

@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface AddItemViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
+
 @property (weak, nonatomic) IBOutlet UITextField *itemName;
+
 @property (weak, nonatomic) IBOutlet UITextView *itemDescription;
+
 @property (weak, nonatomic) IBOutlet UIButton *addItem;
+
 @property (weak, nonatomic) IBOutlet UIView *addItemView;
+
 @property (strong,nonatomic) NSMutableArray *transferdata;
+
 @property (strong,nonatomic) NSString *itemType;
 
 @end
