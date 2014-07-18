@@ -31,6 +31,12 @@
     self.confirmPassword.secureTextEntry = YES;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - TextField Delegates
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -60,10 +66,8 @@
     [self.view endEditing:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
+#pragma mark - IBAction
+
 - (IBAction)Register:(id)sender
 {
     if ([self.name.text isEqualToString:@""]||[self.eMail.text isEqualToString:@""]||[self.password.text isEqualToString:@""]||[self.confirmPassword.text isEqualToString:@""])

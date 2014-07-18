@@ -37,20 +37,35 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:1 animations:^{
-        
-         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
-        
-    }];
+         self.addItemView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:1 animations:^{
-        
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
-        
-    }];
+        self.addItemView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.addItemView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 180, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.addItemView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 180, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.itemName)
+    {
+        [self.itemDescription becomeFirstResponder];
+    }
+    else
+    {
+     //   [self addItem:nil];
+    }
+    return YES;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

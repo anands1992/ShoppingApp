@@ -30,6 +30,14 @@
     self.Password.secureTextEntry = YES;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+}
+
+#pragma mark - UITextfield Delegates
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y - 60, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
@@ -53,16 +61,12 @@
     return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }
+
+#pragma mark - IBAction
 
 - (IBAction)Login:(id)sender
 {

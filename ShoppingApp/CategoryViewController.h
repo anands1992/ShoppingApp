@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

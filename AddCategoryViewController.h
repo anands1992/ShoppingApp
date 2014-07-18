@@ -11,6 +11,7 @@
 @interface AddCategoryViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *categoryImage;
+
 @property (weak, nonatomic) IBOutlet UITextField *categoryName;
 
 @end

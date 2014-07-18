@@ -20,7 +20,7 @@
     NSMutableArray *categoryTable,*watchTable,*phoneTable;
     
     int i;
-    }
+}
 
 @end
 
