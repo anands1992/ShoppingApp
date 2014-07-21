@@ -18,8 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *addItem;
 
-@property (weak, nonatomic) IBOutlet UIView *addItemView;
-
 @property (strong,nonatomic) NSMutableArray *transferdata;
 
 @property (strong,nonatomic) NSString *itemType;

@@ -53,6 +53,7 @@
 }
 
 #pragma mark - UITableView
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return offerTable.count;

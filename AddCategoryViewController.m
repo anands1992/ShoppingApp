@@ -28,6 +28,7 @@
     return self;
 }
 
+#pragma mark - UIViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,6 +53,8 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - UITextfield Delegates
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
@@ -62,7 +65,6 @@
     self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
 }
 
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
@@ -70,8 +72,8 @@
 
 #pragma mark - Image Picker Controller delegate methods
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.categoryImage.image = chosenImage;
     
@@ -88,24 +90,42 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - IBAction
+
+//This Button action allows to add an image to the category
 - (IBAction)addImage:(id)sender
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    
     picker.delegate = self;
+    
     picker.allowsEditing = YES;
+    
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+//This Button checks if the user has entered all parameters and adds a category to the table
 - (IBAction)addCategory:(id)sender
 {
-    if ([self.categoryName.text isEqualToString:@""]||flag == 0)
+    if ([self.categoryName.text isEqualToString:@""])
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               
                               initWithTitle:@"Error!"
                               message:@"Fields not Filled"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if (flag == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              
+                              initWithTitle:@"Error!"
+                              message:@"Image not Given"
                               delegate:nil
                               cancelButtonTitle:@"Dismiss"
                               otherButtonTitles:nil];
@@ -130,21 +150,32 @@
             if (succeeded)
             {
                 NSLog(@"Saved.");
+                
+                [addItem setObject:self.categoryName.text forKey:@1];
+                
+                [addItem setObject:imagefile forKey:@2];
+                
+                [categoryDetails addObject:addItem];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+
             }
             else
             {
                 NSLog(@"%@", error);
+                
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      
+                                      initWithTitle:@"Error!"
+                                      message:@"There was an error in adding the new category,please try again"
+                                      delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil];
+                [alert show];
             }
         }];
         
-        [addItem setObject:self.categoryName.text forKey:@1];
-        
-        [addItem setObject:imagefile forKey:@2];
-        
-        [categoryDetails addObject:addItem];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+            }
     
 }
 

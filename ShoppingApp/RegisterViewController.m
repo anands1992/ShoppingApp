@@ -24,6 +24,7 @@
     return self;
 }
 
+#pragma mark -UIViewcontroller
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -10,6 +10,7 @@
 #import "ProductDetailViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
+
 @interface OfferDetailViewController ()
 
 @end
@@ -35,9 +36,9 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:YES];
     
     self.offerName.text = [_offerDetailViews objectForKey:@"ProductName"];
     

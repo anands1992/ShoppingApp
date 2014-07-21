@@ -15,13 +15,10 @@
 
 @interface CategoryViewController()
 {
-    NSDictionary *category1,*category2,*watch1,*watch2,*watch3,*watch4,*phone1,*phone2,*phone3,*phone4;
-    
-    NSMutableArray *categoryTable,*watchTable,*phoneTable;
+    NSMutableArray *categoryTable;
     
     int i;
 }
-
 @end
 
 @implementation CategoryViewController
@@ -51,6 +48,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -113,7 +112,6 @@
             ProductsTableViewController *products = [segue destinationViewController];
             
             products.key = [[categoryTable objectAtIndex:i]objectForKey:@"CategoryName"];
-        
     }
 }
 

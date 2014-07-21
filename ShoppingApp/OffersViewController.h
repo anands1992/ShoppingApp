@@ -11,6 +11,7 @@
 @interface OffersViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Logout;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

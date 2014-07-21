@@ -47,13 +47,26 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
     [query whereKey:@"ProductType" equalTo:self.key];
     
-    NSArray *findArray = [query findObjects];
-    
-    productArray = [[NSMutableArray alloc] initWithArray:findArray];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             productArray = [[NSMutableArray alloc] initWithArray:objects];
+             // The find succeeded. The first 100 objects are available in objects
+         }
+         else
+         {
+             // Log details of the failure
+             NSLog(@"Error: %@ %@", error, [error userInfo]);
+         }
+         [self.tableView reloadData];
+     }];
     
     [self.tableView reloadData];
 }

@@ -30,6 +30,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.productName.text = [_productDetailViews valueForKey:@"ProductName"];
     
     PFFile *imageFile = [_productDetailViews valueForKey:@"ProductImage"];

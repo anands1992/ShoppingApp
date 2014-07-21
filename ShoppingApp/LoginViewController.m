@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import <Parse/Parse.h>
 @interface LoginViewController ()
+
 @end
 
 @implementation LoginViewController
@@ -24,6 +25,7 @@
     return self;
 }
 
+#pragma mark - UIViewcontroller
 - (void)viewDidLoad
 {
     [super viewDidLoad];
