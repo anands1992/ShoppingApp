@@ -20,6 +20,10 @@
 
 @property (strong,nonatomic) NSMutableArray *productData;
 
+@property (weak, nonatomic) IBOutlet UIView *addItemView;
+
 @property (strong,nonatomic) NSString *itemType;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
 
 @end

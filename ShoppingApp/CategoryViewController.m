@@ -102,6 +102,7 @@
     PFFile *imageFile = [[categoryTable objectAtIndex:indexPath.row]objectForKey:@"categoryImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        
         if (!error) {
             cell.categoryImage.image = [UIImage imageWithData:data];
         }
@@ -131,8 +132,11 @@
 - (IBAction)Logout:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGEDINSTATUS];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [PFUser logOut];
+    
     [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
 }
 

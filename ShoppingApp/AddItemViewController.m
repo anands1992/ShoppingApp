@@ -37,6 +37,8 @@
     self.itemDescription.layer.borderWidth = 5.0f;
     
     self.itemDescription.layer.borderColor = [[UIColor grayColor]CGColor];
+    
+    self.imageHeight.constant = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,24 +50,24 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
+         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 60, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 60, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 #pragma mark - Textview Delegates
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 180, self.view.frame.size.width, self.view.frame.size.height);
+    self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 160, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 180, self.view.frame.size.width, self.view.frame.size.height);
+    self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 160, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -84,13 +86,16 @@
 
 #pragma mark - Image Picker Controller delegate methods
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
     self.itemImage.image = chosenImage;
     
     flag = 1;
+    
+    self.imageHeight.constant = 100;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
