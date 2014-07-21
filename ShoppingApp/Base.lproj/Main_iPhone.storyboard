@@ -152,6 +152,9 @@
                                     <segue destination="AYS-Li-GL4" kind="push" identifier="AddCategory" id="Ces-78-XyG"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="addCategory:" destination="CZ4-MO-1fc" id="aG1-gz-lkB"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" id="R3x-Du-5vT">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bPB-n6-u75">

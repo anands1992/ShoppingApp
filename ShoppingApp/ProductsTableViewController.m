@@ -78,7 +78,6 @@
          [self.tableView reloadData];
      }];
     
-    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

@@ -62,6 +62,7 @@
     }
     
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (!error)
