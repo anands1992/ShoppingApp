@@ -49,6 +49,16 @@
 {
     [super viewWillAppear:YES];
     
+    PFUser *user = [PFUser currentUser];
+    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    {
+        
+    }
+    else
+    {
+         self.navigationItem.rightBarButtonItem=nil;
+    }
+
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
     [query whereKey:@"ProductType" equalTo:self.key];
@@ -103,9 +113,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    i = indexPath.row;
-    
-    Products = [productArray objectAtIndex:indexPath.row];
+    self.productKey = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
     
     [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
 }
@@ -116,7 +124,7 @@
     {
         ProductDetailViewController *products = [segue destinationViewController];
         
-        products.productDetailViews = Products;
+        products.productKey = self.productKey;
     }
     else  if ([segue.identifier isEqualToString:ADDPRODUCT])
     {
@@ -124,7 +132,7 @@
         
         addItem.itemType = _key;
         
-        addItem.transferdata = productArray;
+        addItem.productData = productArray;
     }
 }
 

@@ -12,6 +12,9 @@
 #import <Parse/Parse.h>
 
 @interface OfferDetailViewController ()
+{
+    NSString *offerkey;
+}
 
 @end
 
@@ -42,6 +45,8 @@
     
     self.offerName.text = [_offerDetailViews objectForKey:@"ProductName"];
     
+    offerkey = [_offerDetailViews objectForKey:@"ProductName"];
+    
     PFFile *imageFile = [_offerDetailViews objectForKey:@"ProductImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -65,7 +70,8 @@
     {
         ProductDetailViewController *products = [segue destinationViewController];
         
-        products.productDetailViews = _offerDetailViews;
+        products.productKey = offerkey;
+        
     }
 }
 #pragma mark - IBAction

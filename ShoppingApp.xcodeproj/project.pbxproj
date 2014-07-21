@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		221C705C1974ED9C001BD6F4 /* 5S.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 221C705B1974ED9C001BD6F4 /* 5S.jpeg */; };
 		22295A1A196BC08A006EEB1C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A19196BC08A006EEB1C /* FacebookSDK.framework */; };
 		22295A3B196BC5E4006EEB1C /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A1B196BC099006EEB1C /* GoogleOpenSource.framework */; };
 		22295A40196BC7CC006EEB1C /* GooglePlus.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A1C196BC099006EEB1C /* GooglePlus.bundle */; };
@@ -42,21 +41,10 @@
 		2295627119658BA100BFE3CC /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2295626619658BA100BFE3CC /* AddressBook.framework */; };
 		22B39967197509BF00578609 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B39966197509BF00578609 /* AddItemViewController.m */; };
 		22B3996A197522A300578609 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B39969197522A300578609 /* LoginViewController.m */; };
-		22B3996F197522C500578609 /* Milgauss.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22B3996B197522C500578609 /* Milgauss.jpg */; };
-		22B39970197522C500578609 /* Oyster perpetual.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22B3996C197522C500578609 /* Oyster perpetual.jpg */; };
-		22B39971197522C500578609 /* Rolex Yacht Master Rolesium platinum dial.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22B3996D197522C500578609 /* Rolex Yacht Master Rolesium platinum dial.jpg */; };
-		22B39972197522C500578609 /* submariner date.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22B3996E197522C500578609 /* submariner date.jpg */; };
 		22D5E9B81974D9E400958A23 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5E9B71974D9E400958A23 /* CategoryTableViewCell.m */; };
-		22D5E9BA1974DC8E00958A23 /* xperia.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 22D5E9B91974DC8E00958A23 /* xperia.jpeg */; };
-		22D5E9BC1974DC9200958A23 /* htcone.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 22D5E9BB1974DC9200958A23 /* htcone.jpeg */; };
-		22D5E9C01974DC9D00958A23 /* S5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22D5E9BF1974DC9D00958A23 /* S5.jpg */; };
-		22D5E9C21974DCD900958A23 /* rolex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22D5E9C11974DCD900958A23 /* rolex.jpg */; };
-		22D5E9C41974DE0D00958A23 /* phones.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22D5E9C31974DE0D00958A23 /* phones.jpg */; };
 		22D5E9CA1974E1A900958A23 /* ProductsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5E9C91974E1A900958A23 /* ProductsTableViewController.m */; };
 		22D722E919666750008EAE83 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D722E819666750008EAE83 /* ProductDetailViewController.m */; };
 		22D722EC1966675E008EAE83 /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D722EB1966675E008EAE83 /* OfferDetailViewController.m */; };
-		22D722F71966CFF0008EAE83 /* rsz_1404493248_offer.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D722F61966CFF0008EAE83 /* rsz_1404493248_offer.png */; };
-		22D722F91966CFFA008EAE83 /* rsz_1404493177_680537-time_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D722F81966CFFA008EAE83 /* rsz_1404493177_680537-time_new.png */; };
 		22E177C2196A4E3E008CFD62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C1196A4E3E008CFD62 /* AudioToolbox.framework */; };
 		22E177C4196A4E4A008CFD62 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C3196A4E4A008CFD62 /* CFNetwork.framework */; };
 		22E177C6196A4E75008CFD62 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C5196A4E75008CFD62 /* libz.dylib */; };
@@ -66,6 +54,8 @@
 		22E177CE196A4F18008CFD62 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177CD196A4F18008CFD62 /* Twitter.framework */; };
 		22E177D0196A4F22008CFD62 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177CF196A4F22008CFD62 /* Social.framework */; };
 		22E3D581197000B600B21281 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E3D580197000B600B21281 /* RegisterViewController.m */; };
+		22EEC9DA197CCA5700A2AFC7 /* shopping_bag-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EEC9D9197CCA5700A2AFC7 /* shopping_bag-32.png */; };
+		22EEC9DC197CCA9600A2AFC7 /* sale-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EEC9DB197CCA9600A2AFC7 /* sale-32.png */; };
 		22F85F0C196D02BB008B24E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F85F0B196D02BB008B24E6 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -157,7 +147,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		221C705B1974ED9C001BD6F4 /* 5S.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5S.jpeg; sourceTree = "<group>"; };
 		22295A19196BC08A006EEB1C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ShoppingApp/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		22295A1B196BC099006EEB1C /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "ShoppingApp/google-plus-ios-sdk-1.5.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
 		22295A1C196BC099006EEB1C /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "ShoppingApp/google-plus-ios-sdk-1.5.1/GooglePlus.bundle"; sourceTree = "<group>"; };
@@ -206,25 +195,14 @@
 		22B39966197509BF00578609 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
 		22B39968197522A300578609 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		22B39969197522A300578609 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		22B3996B197522C500578609 /* Milgauss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Milgauss.jpg; sourceTree = "<group>"; };
-		22B3996C197522C500578609 /* Oyster perpetual.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Oyster perpetual.jpg"; sourceTree = "<group>"; };
-		22B3996D197522C500578609 /* Rolex Yacht Master Rolesium platinum dial.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Rolex Yacht Master Rolesium platinum dial.jpg"; sourceTree = "<group>"; };
-		22B3996E197522C500578609 /* submariner date.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "submariner date.jpg"; sourceTree = "<group>"; };
 		22D5E9B61974D9E400958A23 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
 		22D5E9B71974D9E400958A23 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
-		22D5E9B91974DC8E00958A23 /* xperia.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xperia.jpeg; sourceTree = "<group>"; };
-		22D5E9BB1974DC9200958A23 /* htcone.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = htcone.jpeg; sourceTree = "<group>"; };
-		22D5E9BF1974DC9D00958A23 /* S5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S5.jpg; sourceTree = "<group>"; };
-		22D5E9C11974DCD900958A23 /* rolex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rolex.jpg; sourceTree = "<group>"; };
-		22D5E9C31974DE0D00958A23 /* phones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phones.jpg; sourceTree = "<group>"; };
 		22D5E9C81974E1A900958A23 /* ProductsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsTableViewController.h; sourceTree = "<group>"; };
 		22D5E9C91974E1A900958A23 /* ProductsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsTableViewController.m; sourceTree = "<group>"; };
 		22D722E719666750008EAE83 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		22D722E819666750008EAE83 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		22D722EA1966675E008EAE83 /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
 		22D722EB1966675E008EAE83 /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
-		22D722F61966CFF0008EAE83 /* rsz_1404493248_offer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_1404493248_offer.png; sourceTree = "<group>"; };
-		22D722F81966CFFA008EAE83 /* rsz_1404493177_680537-time_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rsz_1404493177_680537-time_new.png"; sourceTree = "<group>"; };
 		22E1764D196A4DA9008CFD62 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		22E1764F196A4DA9008CFD62 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		22E17650196A4DA9008CFD62 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -496,6 +474,8 @@
 		22E177CF196A4F22008CFD62 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		22E3D57F197000B600B21281 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		22E3D580197000B600B21281 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		22EEC9D9197CCA5700A2AFC7 /* shopping_bag-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_bag-32.png"; sourceTree = "<group>"; };
+		22EEC9DB197CCA9600A2AFC7 /* sale-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sale-32.png"; sourceTree = "<group>"; };
 		22F85F0B196D02BB008B24E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		22FF043C196A6E2C00B4B721 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -647,18 +627,8 @@
 			isa = PBXGroup;
 			children = (
 				223CB7DF19779E0300812FB0 /* RolexLogo.jpeg */,
-				22B3996B197522C500578609 /* Milgauss.jpg */,
-				22B3996C197522C500578609 /* Oyster perpetual.jpg */,
-				22B3996D197522C500578609 /* Rolex Yacht Master Rolesium platinum dial.jpg */,
-				22B3996E197522C500578609 /* submariner date.jpg */,
-				221C705B1974ED9C001BD6F4 /* 5S.jpeg */,
-				22D5E9C11974DCD900958A23 /* rolex.jpg */,
-				22D5E9C31974DE0D00958A23 /* phones.jpg */,
-				22D5E9BF1974DC9D00958A23 /* S5.jpg */,
-				22D5E9BB1974DC9200958A23 /* htcone.jpeg */,
-				22D5E9B91974DC8E00958A23 /* xperia.jpeg */,
-				22D722F81966CFFA008EAE83 /* rsz_1404493177_680537-time_new.png */,
-				22D722F61966CFF0008EAE83 /* rsz_1404493248_offer.png */,
+				22EEC9D9197CCA5700A2AFC7 /* shopping_bag-32.png */,
+				22EEC9DB197CCA9600A2AFC7 /* sale-32.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1512,21 +1482,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D5E9C01974DC9D00958A23 /* S5.jpg in Resources */,
-				22B39970197522C500578609 /* Oyster perpetual.jpg in Resources */,
-				22D5E9C21974DCD900958A23 /* rolex.jpg in Resources */,
-				22B39971197522C500578609 /* Rolex Yacht Master Rolesium platinum dial.jpg in Resources */,
 				22956235196589C600BFE3CC /* Main_iPad.storyboard in Resources */,
-				22B3996F197522C500578609 /* Milgauss.jpg in Resources */,
-				22D5E9BA1974DC8E00958A23 /* xperia.jpeg in Resources */,
-				22D5E9BC1974DC9200958A23 /* htcone.jpeg in Resources */,
-				22B39972197522C500578609 /* submariner date.jpg in Resources */,
-				221C705C1974ED9C001BD6F4 /* 5S.jpeg in Resources */,
+				22EEC9DC197CCA9600A2AFC7 /* sale-32.png in Resources */,
+				22EEC9DA197CCA5700A2AFC7 /* shopping_bag-32.png in Resources */,
 				22F85F0C196D02BB008B24E6 /* Images.xcassets in Resources */,
-				22D722F91966CFFA008EAE83 /* rsz_1404493177_680537-time_new.png in Resources */,
-				22D722F71966CFF0008EAE83 /* rsz_1404493248_offer.png in Resources */,
 				223CB7E019779E0300812FB0 /* RolexLogo.jpeg in Resources */,
-				22D5E9C41974DE0D00958A23 /* phones.jpg in Resources */,
 				22956229196589C600BFE3CC /* InfoPlist.strings in Resources */,
 				22295A45196BC9AF006EEB1C /* Main_iPhone.storyboard in Resources */,
 			);

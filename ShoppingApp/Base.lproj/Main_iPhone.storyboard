@@ -138,7 +138,7 @@
                             <constraint firstItem="XLM-ge-oGI" firstAttribute="top" secondItem="2VE-Yg-loa" secondAttribute="top" id="hr1-wS-J39"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Categories" image="rsz_1404493177_680537-time_new.png" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="shopping_bag-32.png" id="u1e-5L-l1D"/>
                     <navigationItem key="navigationItem" title="CATEGORIES" id="cbL-oZ-oA6">
                         <barButtonItem key="leftBarButtonItem" style="done" id="8vC-22-Fez">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="478-98-fGO">
@@ -152,9 +152,6 @@
                                     <segue destination="AYS-Li-GL4" kind="push" identifier="AddCategory" id="Ces-78-XyG"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <action selector="addCategory:" destination="CZ4-MO-1fc" id="5Ma-FE-ppM"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" id="R3x-Du-5vT">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bPB-n6-u75">
@@ -444,7 +441,7 @@
                             <constraint firstItem="U14-nn-iQ0" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" id="cO1-L2-YnO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Offers" image="rsz_1404493248_offer.png" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" title="Offers" image="sale-32.png" id="Z7h-1E-pvt"/>
                     <navigationItem key="navigationItem" title="OFFERS" id="4vR-rg-wr9">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="a5F-yn-tz3">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="odZ-wB-tXt">
@@ -706,7 +703,7 @@
                                 <rect key="frame" x="20" y="71" width="280" height="342"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-BR-GHz">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-BR-GHz">
                                         <rect key="frame" x="59" y="200" width="150" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -886,8 +883,8 @@
     </scenes>
     <resources>
         <image name="RolexLogo.jpeg" width="238" height="212"/>
-        <image name="rsz_1404493177_680537-time_new.png" width="30" height="30"/>
-        <image name="rsz_1404493248_offer.png" width="30" height="30"/>
+        <image name="sale-32.png" width="32" height="32"/>
+        <image name="shopping_bag-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -895,7 +892,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SzA-7D-VYr"/>
-        <segue reference="c0f-ZO-Qnr"/>
+        <segue reference="EFg-73-SxF"/>
+        <segue reference="1PN-xP-HtC"/>
     </inferredMetricsTieBreakers>
 </document>

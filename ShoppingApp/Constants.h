@@ -18,6 +18,9 @@
 #define ADDPRODUCT @"Add Product"
 #define ADDCATEGORY @"AddCategory"
 
+#define isAdmin @"admin"
+#define isUser @"user"
+
 //Logged In Status
 #define LOGGEDINSTATUS @"isLoggedIn"
 

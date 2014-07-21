@@ -29,8 +29,6 @@
 {
     [super viewDidLoad];
     
-    categoryTable = [[NSMutableArray alloc]init];
-    
     if([[NSUserDefaults standardUserDefaults]boolForKey:LOGGEDINSTATUS])
     {
         
@@ -39,6 +37,9 @@
     {
         [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
     }
+    
+    categoryTable = [[NSMutableArray alloc]init];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +50,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    PFUser *user = [PFUser currentUser];
+    if ([user[@"UserID"] isEqualToString:isAdmin])
+    {
+        
+    }
+    else
+    {
+        self.navigationItem.leftBarButtonItem=nil;
+    }
     
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)

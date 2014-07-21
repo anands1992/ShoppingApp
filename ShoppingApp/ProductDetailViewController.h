@@ -21,6 +21,9 @@
 
 @property (weak,nonatomic) NSDictionary *productDetailViews;
 
+@property (strong,nonatomic) NSString *productKey;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *productScroll;
+
 
 @end

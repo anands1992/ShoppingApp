@@ -14,6 +14,8 @@
 
 @property(strong,nonatomic) NSString *key;
 
+@property(strong,nonatomic) NSString *productKey;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItem;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "Constants.h"
 #import <Parse/Parse.h>
 
 @interface RegisterViewController ()
@@ -125,6 +126,7 @@
             else
             {
                 user.password = self.password.text;
+                user[@"UserID"] = isUser;
                 [user signUp];
                 [user saveInBackground];
                 [self dismissViewControllerAnimated:YES completion:nil];

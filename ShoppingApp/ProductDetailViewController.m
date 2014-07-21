@@ -32,26 +32,55 @@
 {
     [super viewDidLoad];
     
-    self.productName.text = [_productDetailViews valueForKey:@"ProductName"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
-    PFFile *imageFile = [_productDetailViews valueForKey:@"ProductImage"];
+    [query whereKey:@"ProductName" equalTo:self.productKey];
     
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-    {
-        if (!error) {
-            self.productImage.image = [UIImage imageWithData:data];
-        }
-    }];
-    
-    self.productDescription.text = [_productDetailViews valueForKey:@"ProductDescription"];
-    
-    [self.productScroll sizeToFit];
-    
-    _productDescription.numberOfLines = 0; //will wrap text in new line
-    
-    [_productDescription sizeToFit];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             self.productDetailViews = [objects objectAtIndex:0];
+             // The find succeeded. The first 100 objects are available in objects
+             
+             self.productName.text = [_productDetailViews valueForKey:@"ProductName"];
+             
+             PFFile *imageFile = [_productDetailViews valueForKey:@"ProductImage"];
+             
+             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+              {
+                  if (!error) {
+                      self.productImage.image = [UIImage imageWithData:data];
+                  }
+              }];
+             
+             self.productDescription.text = [_productDetailViews valueForKey:@"ProductDescription"];
+             
+             [self.productScroll sizeToFit];
+             
+             _productDescription.numberOfLines = 0; //will wrap text in new line
+             
+             [_productDescription sizeToFit];
+             
 
-}
+         }
+         else
+         {
+             // Log details of the failure
+             NSLog(@"Error: %@ %@", error, [error userInfo]);
+             
+             UIAlertView *alert = [[UIAlertView alloc]
+                                   
+                                   initWithTitle:@"Error!"
+                                   message:@"There was an error in retrieving the data, please try again"
+                                   delegate:nil
+                                   cancelButtonTitle:@"Dismiss"
+                                   otherButtonTitles:nil];
+             [alert show];
+         }
+     }];
+    
+    }
 
 - (void)didReceiveMemoryWarning
 {

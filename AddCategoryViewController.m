@@ -8,6 +8,7 @@
 
 #import "AddCategoryViewController.h"
 #import "ProductsTableViewController.h"
+#import "Constants.h"
 #import <Parse/Parse.h>
 
 @interface AddCategoryViewController ()
@@ -32,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
@@ -139,43 +140,68 @@
         
         categories[@"CategoryName"] = self.categoryName.text;
         
-        NSData *imagedata = UIImageJPEGRepresentation(self.categoryImage.image, 0);
+        PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
         
-        PFFile *imagefile = [PFFile fileWithData:imagedata];
+        [query whereKey:@"CategoryName" equalTo:self.categoryName.text];
         
-        categories[@"categoryImage"] = imagefile;
-        
-        [categories saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-        {
-            if (succeeded)
-            {
-                NSLog(@"Saved.");
-                
-                [addItem setObject:self.categoryName.text forKey:@1];
-                
-                [addItem setObject:imagefile forKey:@2];
-                
-                [categoryDetails addObject:addItem];
-                
-                [self.navigationController popViewControllerAnimated:YES];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             if (objects.count == 0)
+             {
+                 NSData *imagedata = UIImageJPEGRepresentation(self.categoryImage.image, 0);
+                 
+                 PFFile *imagefile = [PFFile fileWithData:imagedata];
+                 
+                 categories[@"categoryImage"] = imagefile;
+                 
+                 [categories saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                  {
+                      if (succeeded)
+                      {
+                          NSLog(@"Saved.");
+                          
+                          [addItem setObject:self.categoryName.text forKey:@1];
+                          
+                          [addItem setObject:imagefile forKey:@2];
+                          
+                          [categoryDetails addObject:addItem];
+                          
+                          [self.navigationController popViewControllerAnimated:YES];
+                          
+                      }
+                      else
+                      {
+                          NSLog(@"%@", error);
+                          
+                          UIAlertView *alert = [[UIAlertView alloc]
+                                                
+                                                initWithTitle:@"Error!"
+                                                message:@"There was an error in adding the new category,please try again"
+                                                delegate:nil
+                                                cancelButtonTitle:@"Dismiss"
+                                                otherButtonTitles:nil];
+                          [alert show];
+                      }
+                  }];
+                 
+             }
+             else
+             {
+                 // Log details of the failure
+                 NSLog(@"Error: %@ %@", error, [error userInfo]);
+                 
+                 UIAlertView *alert = [[UIAlertView alloc]
+                                       
+                                       initWithTitle:@"Error!"
+                                       message:@"The entered category name has already been taken, please specify a different item name"
+                                       delegate:nil
+                                       cancelButtonTitle:@"Dismiss"
+                                       otherButtonTitles:nil];
+                 [alert show];
+             }
+         }];
 
-            }
-            else
-            {
-                NSLog(@"%@", error);
-                
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      
-                                      initWithTitle:@"Error!"
-                                      message:@"There was an error in adding the new category,please try again"
-                                      delegate:nil
-                                      cancelButtonTitle:@"Dismiss"
-                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }];
-        
-            }
+    }
     
 }
 

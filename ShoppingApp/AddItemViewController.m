@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     self.itemDescription.layer.borderWidth = 5.0f;
+    
     self.itemDescription.layer.borderColor = [[UIColor grayColor]CGColor];
 }
 
@@ -117,7 +118,7 @@
 //This Button checks if the user has entered all parameters and adds a product to the table
 - (IBAction)AddProduct:(id)sender
 {
-    if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""])
+    if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]) // checks if the textfields are left empty
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               
@@ -128,7 +129,7 @@
                           otherButtonTitles:nil];
         [alert show];
     }
-    else if (flag == 0)
+    else if (flag == 0) // checks if the image has been entered
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               
@@ -148,49 +149,75 @@
         
         products[@"ProductName"] = self.itemName.text;
         
-        products[@"ProductDescription"] = self.itemDescription.text;
+        PFQuery *query = [PFQuery queryWithClassName:@"Products"];
         
-        products[@"ProductType"] = self.itemType;
+        [query whereKey:@"ProductName" equalTo:self.itemName.text];
         
-        NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
-        
-        PFFile *imagefile = [PFFile fileWithData:imagedata];
-        
-        products[@"ProductImage"] = imagefile;
-        
-        [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded)
-            {
-                NSLog(@"Saved.");
-                
-                [addItem setObject:self.itemName.text forKey:@1];
-                
-                [addItem setObject:imagefile forKey:@2];
-                
-                [addItem setObject:self.itemDescription.text forKey:@3];
-                
-                [addItem setObject:self.itemType forKey:@4];
-                
-                [self.transferdata addObject:addItem];
-                
-                [self.navigationController popViewControllerAnimated:YES];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) // to check if the given item with same name already exists in the database
+         {
+             if (objects.count == 0)
+             {
+                 products[@"ProductDescription"] = self.itemDescription.text;
+                 
+                 products[@"ProductType"] = self.itemType;
+                 
+                 NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
+                 
+                 PFFile *imagefile = [PFFile fileWithData:imagedata];
+                 
+                 products[@"ProductImage"] = imagefile;
+                 
+                 [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                     if (succeeded)
+                     {
+                         NSLog(@"Saved.");
+                         
+                         [addItem setObject:self.itemName.text forKey:@1];
+                         
+                         [addItem setObject:imagefile forKey:@2];
+                         
+                         [addItem setObject:self.itemDescription.text forKey:@3];
+                         
+                         [addItem setObject:self.itemType forKey:@4];
+                         
+                         [self.productData addObject:addItem];
+                         
+                         [self.navigationController popViewControllerAnimated:YES];
+                         
+                     }
+                     else
+                     {
+                         NSLog(@"%@", error);
+                         
+                         UIAlertView *alert = [[UIAlertView alloc]
+                                               
+                                               initWithTitle:@"Error!"
+                                               message:@"There was an error in adding the new item, please try again"
+                                               delegate:nil
+                                               cancelButtonTitle:@"Dismiss"
+                                               otherButtonTitles:nil];
+                         [alert show];
+                     }
+                 }];
+                 
+             }
 
-            }
-            else
-            {
-                NSLog(@"%@", error);
-              
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      
-                                      initWithTitle:@"Error!"
-                                      message:@"There was an error in adding the new item, please try again"
-                                      delegate:nil
-                                      cancelButtonTitle:@"Dismiss"
-                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }];
-        
-            }
+             else
+             {
+                 // Log details of the failure
+                 NSLog(@"Error: %@ %@", error, [error userInfo]);
+                 
+                 UIAlertView *alert = [[UIAlertView alloc]
+                                       
+                                       initWithTitle:@"Error!"
+                                       message:@"The entered itemname has already been taken, please specify a different item name"
+                                       delegate:nil
+                                       cancelButtonTitle:@"Dismiss"
+                                       otherButtonTitles:nil];
+                 [alert show];
+
+             }
+         }];
+    }
 }
 @end
