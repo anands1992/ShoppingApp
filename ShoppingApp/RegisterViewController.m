@@ -111,26 +111,28 @@
             user.username = self.eMail.text;
             PFQuery *query = [PFQuery queryWithClassName:@"User"];
             [query whereKey:@"username" equalTo:self.eMail.text];
-            NSArray *findUser = [query findObjects];
-            if (findUser.count != 0)
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
             {
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      
-                                      initWithTitle:@"Error!"
-                                            message:@"This E-Mail is Already Registered"
-                                           delegate:nil
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil];
-                [alert show];
-            }
-            else
-            {
-                user.password = self.password.text;
-                user[@"UserID"] = isUser;
-                [user signUp];
-                [user saveInBackground];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
+                if (objects.count !=0)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          
+                                          initWithTitle:@"Error!"
+                                          message:@"This E-Mail is Already Registered"
+                                          delegate:nil
+                                          cancelButtonTitle:@"Dismiss"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+                else
+                {
+                    user.password = self.password.text;
+                    user[@"UserID"] = isUser;
+                    [user signUp];
+                    [user saveInBackground];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+            }];
         }
         else
         {
