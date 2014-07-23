@@ -72,10 +72,10 @@
              UIAlertView *alert = [[UIAlertView alloc]
                                    
                                    initWithTitle:@"Error!"
-                                   message:@"There was an error in retrieving the data, please try again"
-                                   delegate:nil
-                                   cancelButtonTitle:@"Dismiss"
-                                   otherButtonTitles:nil];
+                                         message:@"There was an error in retrieving the data, please try again"
+                                        delegate:nil
+                               cancelButtonTitle:@"Dismiss"
+                               otherButtonTitles:nil];
              [alert show];
          }
      }];

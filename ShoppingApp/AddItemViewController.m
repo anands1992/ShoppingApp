@@ -76,6 +76,10 @@
     {
         [self.itemDescription becomeFirstResponder];
     }
+    else
+    {
+        [self AddProduct:nil];
+    }
     return YES;
 }
 
@@ -95,7 +99,7 @@
     
     flag = 1;
     
-    self.imageHeight.constant = 100;
+    self.imageHeight.constant = 60;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -134,7 +138,7 @@
                           otherButtonTitles:nil];
         [alert show];
     }
-    else if (flag == 0) // checks if the image has been entered
+    else if (flag != 1) // checks if the image has been entered
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               

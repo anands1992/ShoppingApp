@@ -17,6 +17,7 @@
 #define PUSHTOLOGINSCREENFROMOFFERSTAB @"OfferLoginModal"
 #define ADDPRODUCT @"Add Product"
 #define ADDCATEGORY @"AddCategory"
+#define ADDOFFER @"addOffer"
 
 #define isAdmin @"admin"
 #define isUser @"user"

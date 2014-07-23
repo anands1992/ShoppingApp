@@ -14,4 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *categoryName;
 
+@property (weak, nonatomic) IBOutlet UIView *categoryView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
+
 @end

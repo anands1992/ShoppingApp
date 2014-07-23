@@ -30,10 +30,13 @@
 }
 
 #pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.imageHeight.constant = 0;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
@@ -58,12 +61,12 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 60, self.view.frame.size.width, self.view.frame.size.height);
+    self.categoryView.frame = CGRectMake(self.categoryView.frame.origin.x, self.categoryView.frame.origin.y - 100, self.categoryView.frame.size.width, self.categoryView.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 60, self.view.frame.size.width, self.view.frame.size.height);
+    self.categoryView.frame = CGRectMake(self.categoryView.frame.origin.x, self.categoryView.frame.origin.y + 100, self.categoryView.frame.size.width, self.categoryView.frame.size.height);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -79,6 +82,8 @@
     self.categoryImage.image = chosenImage;
     
     flag = 1;
+    
+    self.imageHeight.constant = 60;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

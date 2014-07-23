@@ -9,14 +9,17 @@
 #import "OffersViewController.h"
 #import "OffersTableViewCell.h"
 #import "OfferDetailViewController.h"
+#import "AddOfferViewController.h"
 #import <GooglePlus/GooglePlus.h>
 #import <Parse/Parse.h>
 #import "Constants.h"
 
 @interface OffersViewController ()
 {
-    NSDictionary *dict, *product1, *product2, *product3, *product4;
+    NSDictionary *dict;
+    
     NSArray *offerTable;
+    
     int i;
 }
 
@@ -30,6 +33,26 @@
 {
     [super viewDidLoad];
     
+    PFUser *user = [PFUser currentUser];
+    
+    if ([user[@"UserID"] isEqualToString:isAdmin])
+    {
+        
+    }
+    else
+    {
+        self.navigationItem.leftBarButtonItem=nil;
+    }
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
     PFQuery *query = [PFQuery queryWithClassName:@"Offers"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -45,11 +68,7 @@
          }
          [self.tableView reloadData];
      }];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - UITableView
@@ -100,9 +119,16 @@
         
         offers.offerDetailViews = dict;
     }
+    else if ([segue.identifier isEqualToString:ADDOFFER])
+    {
+        AddOfferViewController *offers = [segue destinationViewController];
+        
+        offers.offerData = [[NSMutableArray alloc] initWithArray:offerTable];
+    }
 }
 
 #pragma mark - IBAction
+
 - (IBAction)Logout:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGEDINSTATUS];

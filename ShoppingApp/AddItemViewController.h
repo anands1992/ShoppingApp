@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *itemDescription;
 
-@property (weak, nonatomic) IBOutlet UIButton *addItem;
+@property (weak, nonatomic) IBOutlet UIButton *addProduct;
 
 @property (strong,nonatomic) NSMutableArray *productData;
 
