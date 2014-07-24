@@ -16,10 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *offerDescription;
 
-@property (weak, nonatomic) IBOutlet UIImageView *offerImage;
-
-@property (weak, nonatomic) IBOutlet UIButton *addImage;
-
 @property (weak, nonatomic) IBOutlet UIButton *placeOffer;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *offerScroll;

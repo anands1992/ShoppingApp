@@ -21,6 +21,8 @@
     
     NSString *productName;
     
+    PFFile *offerImageData;
+    
     int flag;
 }
 @end
@@ -56,7 +58,7 @@
     self.offerDescription.layer.borderColor = [[UIColor grayColor]CGColor];
     self.offerDescriptionHeight.constant = 80.0f;
     
-    self.offerScroll.frame = CGRectMake(self.placeOffer.frame.origin.x, self.placeOffer.frame.origin.y, self.placeOffer.frame.size.width, self.placeOffer.frame.size.height +60);
+    self.offerScroll.frame = CGRectMake(self.placeOffer.frame.origin.x, self.placeOffer.frame.origin.y, self.placeOffer.frame.size.width, self.placeOffer.frame.size.height +30);
 }
 
 //sets data into category picker
@@ -100,8 +102,6 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     self.offerScroll.frame = CGRectMake(self.offerScroll.frame.origin.x, self.offerScroll.frame.origin.y + 200, self.offerScroll.frame.size.width, self.offerScroll.frame.size.height);
-    
-    [self.offerDescription resignFirstResponder];
 }
 
 #pragma mark - Picker View Delegate Methods
@@ -171,38 +171,7 @@
     }
 }
 
-#pragma mark - Image Picker Controller delegate methods
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    
-    self.offerImage.image = chosenImage;
-    flag = 1;
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
-
 #pragma mark - IBAction
-//This Button action allows to add an image to the category
-- (IBAction)addImage:(id)sender
-{
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
-}
-
-- (IBAction)keyboardDown:(id)sender
-{
-    [self.view endEditing:YES];
-}
-
 - (IBAction)placeOffer:(id)sender
 {
     if ([self.offerDescription.text isEqualToString:@""])
@@ -215,18 +184,6 @@
                           cancelButtonTitle:@"Dismiss"
                            otherButtonTitles:nil];
         [alert show];
-    }
-    else if (flag != 1) // checks if the image has been entered
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Image Not Given"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
-        
     }
     else if (categoryName == nil)
     {
@@ -259,46 +216,54 @@
         
         offers[@"ProductName"] = productName;
         
-        offers[@"ProductDescription"] = self.offerDescription.text;
+        PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
         
-        NSData *imagedata = UIImageJPEGRepresentation(self.offerImage.image, 0);
+        [productQuery whereKey:@"ProductName" equalTo:productName];
         
-        PFFile *imagefile = [PFFile fileWithData:imagedata];
-        
-        offers[@"ProductImage"] = imagefile;
-        
-        offers[@"ProductType"] = categoryName;
-        
-        [offers saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-        {
-            if (succeeded)
-            {
-                [addItem setObject: productName forKey:@1];
-                
-                [addItem setObject:imagefile forKey:@2];
-                
-                [addItem setObject:self.offerDescription.text forKey:@3];
-                
-                [addItem setObject:categoryName forKey:@4];
-                
-                [self.offerData addObject:addItem];
-                
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            else
-            {
-                NSLog(@"%@", error);
-                
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      
-                                      initWithTitle:@"Error!"
-                                      message:@"There was an error in adding the new item, please try again"
-                                      delegate:nil
-                                      cancelButtonTitle:@"Dismiss"
-                                      otherButtonTitles:nil];
-                [alert show];
-            }
+        [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+            
+            offerImageData = [[objects  objectAtIndex:0] valueForKey:@"ProductImage"];
+            
+            offers[@"ProductImage"] = offerImageData;
+            
+            offers[@"ProductDescription"] = self.offerDescription.text;
+            
+            offers[@"ProductType"] = categoryName;
+            
+            [offers saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+             {
+                 if (succeeded)
+                 {
+                     [addItem setObject: productName forKey:@1];
+                     
+                     [addItem setObject: offerImageData forKey:@2];
+                     
+                     [addItem setObject:self.offerDescription.text forKey:@3];
+                     
+                     [addItem setObject:categoryName forKey:@4];
+                     
+                     [self.offerData addObject:addItem];
+                     
+                     [self.navigationController popViewControllerAnimated:YES];
+                 }
+                 else
+                 {
+                     NSLog(@"%@", error);
+                     
+                     UIAlertView *alert = [[UIAlertView alloc]
+                                           
+                                           initWithTitle:@"Error!"
+                                           message:@"There was an error in adding the new item, please try again"
+                                           delegate:nil
+                                           cancelButtonTitle:@"Dismiss"
+                                           otherButtonTitles:nil];
+                     [alert show];
+                 }
+             }];
+
         }];
+        
     }
 }
 

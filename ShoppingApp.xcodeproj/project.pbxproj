@@ -533,7 +533,6 @@
 			children = (
 				22295A43196BC9AF006EEB1C /* Main_iPhone.storyboard */,
 				22956224196589C600BFE3CC /* ShoppingApp */,
-				22956249196589C700BFE3CC /* ShoppingAppTests */,
 				2295621D196589C600BFE3CC /* Frameworks */,
 				2295621C196589C600BFE3CC /* Products */,
 			);
@@ -615,7 +614,7 @@
 				2295624A196589C700BFE3CC /* Supporting Files */,
 			);
 			path = ShoppingAppTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		2295624A196589C700BFE3CC /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -632,6 +631,7 @@
 				223CB7DF19779E0300812FB0 /* RolexLogo.jpeg */,
 				22EEC9D9197CCA5700A2AFC7 /* shopping_bag-32.png */,
 				22EEC9DB197CCA9600A2AFC7 /* sale-32.png */,
+				22956249196589C700BFE3CC /* ShoppingAppTests */,
 			);
 			name = Images;
 			sourceTree = "<group>";

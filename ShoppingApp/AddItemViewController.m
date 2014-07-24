@@ -50,11 +50,21 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 60, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    if (flag == 0)
+    {
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 45, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    }
+    else
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 60, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if (flag == 0)
+    {
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 45, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    }
+    else
         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 60, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
@@ -62,12 +72,22 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 160, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    if (flag == 0)
+    {
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    }
+    else
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 150, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 160, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    if (flag == 0)
+    {
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+    }
+    else
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 150, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

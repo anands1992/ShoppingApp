@@ -136,11 +136,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+        PFQuery *categoryQuery = [PFQuery queryWithClassName:@"Categories"];
         
-        [query whereKey:@"CategoryName" equalTo:[[categoryTable objectAtIndex:indexPath.row]valueForKey:@"CategoryName"]];
+        [categoryQuery whereKey:@"CategoryName" equalTo:[[categoryTable objectAtIndex:indexPath.row]valueForKey:@"CategoryName"]];
         
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+        [categoryQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
          {
              [categoryTable removeObjectAtIndex:indexPath.row];
              
@@ -148,10 +148,20 @@
              
              [self.tableView reloadData];
          }];
-
+        
+        PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
+        
+        [productQuery whereKey:@"ProductType" equalTo:[[categoryTable objectAtIndex:indexPath.row]valueForKey:@"CategoryName"]];
+        
+        [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            for (int j = 0; j <objects.count; j ++)
+            {
+                [[objects objectAtIndex:j] deleteInBackground];
+            }
+        }];
     }
 }
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
