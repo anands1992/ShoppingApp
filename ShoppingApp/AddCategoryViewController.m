@@ -7,7 +7,7 @@
 //
 
 #import "AddCategoryViewController.h"
-#import "ProductsTableViewController.h"
+#import "ProductTableViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
 

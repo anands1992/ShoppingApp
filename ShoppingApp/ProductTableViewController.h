@@ -1,5 +1,5 @@
 //
-//  ProductsTableViewController.h
+//  ProductTableViewController.h
 //  ShoppingApp
 //
 //  Created by qbadmin on 15/07/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductsTableViewController : UITableViewController
+@interface ProductTableViewController : UITableViewController
 
 @property (strong,nonatomic) NSMutableArray *categoryDetailViews;
 

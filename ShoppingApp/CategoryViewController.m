@@ -8,7 +8,7 @@
 
 #import "CategoryViewController.h"
 #import "CategoryTableViewCell.h"
-#import "ProductsTableViewController.h"
+#import "ProductTableViewController.h"
 #import "AddCategoryViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
@@ -118,11 +118,46 @@
     [self performSegueWithIdentifier:PUSHTOPRODUCTSCREEN sender:self];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    PFUser *user = [PFUser currentUser];
+    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+        
+        [query whereKey:@"CategoryName" equalTo:[[categoryTable objectAtIndex:indexPath.row]valueForKey:@"CategoryName"]];
+        
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+         {
+             [categoryTable removeObjectAtIndex:indexPath.row];
+             
+             [object deleteInBackground];
+             
+             [self.tableView reloadData];
+         }];
+
+    }
+}
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:PUSHTOPRODUCTSCREEN])
     {
-            ProductsTableViewController *products = [segue destinationViewController];
+            ProductTableViewController *products = [segue destinationViewController];
             
             products.key = [[categoryTable objectAtIndex:i]objectForKey:@"CategoryName"];
     }

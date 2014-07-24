@@ -18,7 +18,7 @@
 {
     NSDictionary *dict;
     
-    NSArray *offerTable;
+    NSMutableArray *offerTable;
     
     int i;
 }
@@ -109,6 +109,39 @@
     dict = [offerTable objectAtIndex:indexPath.row];
     
     [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    PFUser *user = [PFUser currentUser];
+    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        PFQuery *query = [PFQuery queryWithClassName:@"Offers"];
+        
+        [query whereKey:@"ProductName" equalTo:[[offerTable objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
+        
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+         {
+             [offerTable removeObjectAtIndex:indexPath.row];
+             
+             [object deleteInBackground];
+             
+             [self.tableView reloadData];
+         }];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

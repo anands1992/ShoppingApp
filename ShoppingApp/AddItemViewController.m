@@ -7,7 +7,7 @@
 //
 
 #import "AddItemViewController.h"
-#import "ProductsTableViewController.h"
+#import "ProductTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 

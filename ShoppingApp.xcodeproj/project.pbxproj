@@ -43,9 +43,9 @@
 		22D59FF1197E12F8004E7C6C /* AddCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D59FF0197E12F8004E7C6C /* AddCategoryViewController.m */; };
 		22D59FF4197E13E7004E7C6C /* AddOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D59FF3197E13E7004E7C6C /* AddOfferViewController.m */; };
 		22D5E9B81974D9E400958A23 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5E9B71974D9E400958A23 /* CategoryTableViewCell.m */; };
-		22D5E9CA1974E1A900958A23 /* ProductsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5E9C91974E1A900958A23 /* ProductsTableViewController.m */; };
 		22D722E919666750008EAE83 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D722E819666750008EAE83 /* ProductDetailViewController.m */; };
 		22D722EC1966675E008EAE83 /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D722EB1966675E008EAE83 /* OfferDetailViewController.m */; };
+		22D7F8481980EB7F00B17D7F /* ProductTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D7F8471980EB7F00B17D7F /* ProductTableViewController.m */; };
 		22E177C2196A4E3E008CFD62 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C1196A4E3E008CFD62 /* AudioToolbox.framework */; };
 		22E177C4196A4E4A008CFD62 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C3196A4E4A008CFD62 /* CFNetwork.framework */; };
 		22E177C6196A4E75008CFD62 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E177C5196A4E75008CFD62 /* libz.dylib */; };
@@ -200,12 +200,12 @@
 		22D59FF3197E13E7004E7C6C /* AddOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOfferViewController.m; sourceTree = "<group>"; };
 		22D5E9B61974D9E400958A23 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
 		22D5E9B71974D9E400958A23 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
-		22D5E9C81974E1A900958A23 /* ProductsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsTableViewController.h; sourceTree = "<group>"; };
-		22D5E9C91974E1A900958A23 /* ProductsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsTableViewController.m; sourceTree = "<group>"; };
 		22D722E719666750008EAE83 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		22D722E819666750008EAE83 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		22D722EA1966675E008EAE83 /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
 		22D722EB1966675E008EAE83 /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
+		22D7F8461980EB7F00B17D7F /* ProductTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewController.h; sourceTree = "<group>"; };
+		22D7F8471980EB7F00B17D7F /* ProductTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewController.m; sourceTree = "<group>"; };
 		22E1764D196A4DA9008CFD62 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		22E1764F196A4DA9008CFD62 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		22E17650196A4DA9008CFD62 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -671,8 +671,8 @@
 				22956237196589C600BFE3CC /* CategoryViewController.m */,
 				22D59FEF197E12F8004E7C6C /* AddCategoryViewController.h */,
 				22D59FF0197E12F8004E7C6C /* AddCategoryViewController.m */,
-				22D5E9C81974E1A900958A23 /* ProductsTableViewController.h */,
-				22D5E9C91974E1A900958A23 /* ProductsTableViewController.m */,
+				22D7F8461980EB7F00B17D7F /* ProductTableViewController.h */,
+				22D7F8471980EB7F00B17D7F /* ProductTableViewController.m */,
 				2295625919658A8400BFE3CC /* ProductsTableViewCell.h */,
 				2295625A19658A8400BFE3CC /* ProductsTableViewCell.m */,
 				22D722E719666750008EAE83 /* ProductDetailViewController.h */,
@@ -1526,7 +1526,7 @@
 				2295625B19658A8400BFE3CC /* ProductsTableViewCell.m in Sources */,
 				2295622F196589C600BFE3CC /* ShoppingAppDelegate.m in Sources */,
 				2295623B196589C600BFE3CC /* OffersViewController.m in Sources */,
-				22D5E9CA1974E1A900958A23 /* ProductsTableViewController.m in Sources */,
+				22D7F8481980EB7F00B17D7F /* ProductTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

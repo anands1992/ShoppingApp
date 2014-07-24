@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
-#import "ProductsTableViewController.h"
+#import "ProductTableViewController.h"
 #import "ProductsTableViewCell.h"
 #import "ProductDetailViewController.h"
 #import "AddItemViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
 
-@interface ProductsTableViewController ()
+@interface ProductTableViewController ()
 {
     int i;
     NSDictionary *Products;
@@ -23,7 +23,7 @@
 }
 @end
 
-@implementation ProductsTableViewController
+@implementation ProductTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -56,9 +56,9 @@
     }
     else
     {
-         self.navigationItem.rightBarButtonItem=nil;
+        self.navigationItem.rightBarButtonItem=nil;
     }
-
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
     [query whereKey:@"ProductType" equalTo:self.key];
@@ -98,7 +98,7 @@
     }
     
     cell.productName.text = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
-
+    
     PFFile *imageFile = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -115,6 +115,39 @@
     self.productKey = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
     
     [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    PFUser *user = [PFUser currentUser];
+    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+        
+        [query whereKey:@"ProductName" equalTo:[[productArray objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
+        
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+         {
+             [productArray removeObjectAtIndex:indexPath.row];
+             
+             [object deleteInBackground];
+             
+             [self.tableView reloadData];
+         }];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

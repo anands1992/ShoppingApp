@@ -128,7 +128,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XLM-ge-oGI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XLM-ge-oGI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -223,12 +223,69 @@
                     <connections>
                         <outlet property="tableView" destination="XLM-ge-oGI" id="V2z-Ls-ovK"/>
                         <segue destination="in7-R6-Wc0" kind="modal" identifier="CategoryLoginModal" id="EFg-73-SxF"/>
-                        <segue destination="X5d-Ww-mtV" kind="push" identifier="PushToProducts" id="YIo-MY-EIJ"/>
+                        <segue destination="eql-p2-Jqv" kind="push" identifier="PushToProducts" id="2KT-UW-cVN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-135" y="-610"/>
+        </scene>
+        <!--Product Table View Controller-->
+        <scene sceneID="Pyu-SJ-CQ0">
+            <objects>
+                <tableViewController id="eql-p2-Jqv" customClass="ProductTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dj1-Y7-ugC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="100" id="3kS-BQ-dg1" customClass="ProductsTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3kS-BQ-dg1" id="zYq-9H-OS8">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lLn-pY-3WX">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="S1V-6b-DvE">
+                                            <rect key="frame" x="98" y="20" width="189" height="59"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="productImage" destination="lLn-pY-3WX" id="IAh-hO-fLG"/>
+                                    <outlet property="productName" destination="S1V-6b-DvE" id="aNk-yx-AlS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eql-p2-Jqv" id="hjX-Qd-NaJ"/>
+                            <outlet property="delegate" destination="eql-p2-Jqv" id="Q2p-df-9DY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KyW-Rk-9yt">
+                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="xzY-Fn-YVO">
+                            <connections>
+                                <action selector="addItem:" destination="eql-p2-Jqv" id="UdU-gd-ELN"/>
+                                <segue destination="Khl-0O-x59" kind="push" identifier="AddProduct" id="pIo-eJ-hHx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addItem" destination="xzY-Fn-YVO" id="k9A-kz-PlK"/>
+                        <segue destination="GhW-mh-pOS" kind="push" identifier="PushToDetailView" id="MJz-ck-XdF"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6PQ-lk-a70" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="-610"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YhZ-5W-BSN">
@@ -244,72 +301,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wtg-8e-KQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-135" y="-1381"/>
-        </scene>
-        <!--Products Table View Controller-->
-        <scene sceneID="na3-3g-bjj">
-            <objects>
-                <tableViewController id="X5d-Ww-mtV" customClass="ProductsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" sectionHeaderHeight="22" sectionFooterHeight="22" id="KiL-xo-GEl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="142" id="I4j-MO-XGu" customClass="ProductsTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="142"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I4j-MO-XGu" id="BS6-GP-GwH">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="141"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Yj-2W-CDp">
-                                            <rect key="frame" x="0.0" y="1" width="90" height="140"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="9vY-Ah-orz">
-                                            <rect key="frame" x="98" y="20" width="202" height="101"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="productImage" destination="2Yj-2W-CDp" id="9WG-i5-d97"/>
-                                    <outlet property="productName" destination="9vY-Ah-orz" id="hRS-VO-AS1"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="X5d-Ww-mtV" id="y0q-rs-EGC"/>
-                            <outlet property="delegate" destination="X5d-Ww-mtV" id="zya-Va-0MG"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="2Xr-Lr-GyD">
-                        <barButtonItem key="rightBarButtonItem" style="done" id="9ZG-Qf-pqv">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6fg-2h-HwY">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Add Item">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Khl-0O-x59" kind="push" identifier="Add Product" id="57d-jQ-cRK"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="addItem:" destination="X5d-Ww-mtV" id="gEJ-2f-I1I"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="addItem" destination="9ZG-Qf-pqv" id="TP1-AD-9Sj"/>
-                        <segue destination="GhW-mh-pOS" kind="push" identifier="PushToDetailView" id="1PN-xP-HtC"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="REJ-ga-EuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="530" y="-610"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="GtI-f1-Dws">
@@ -914,8 +905,8 @@
                             <constraint firstItem="cYQ-zP-Rrl" firstAttribute="top" secondItem="9Jh-3i-8d2" secondAttribute="bottom" constant="4" id="qYa-dB-7ro"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="T2U-mr-9ha"/>
                     <connections>
-                        <outlet property="addItem" destination="KcZ-4O-ekx" id="qPj-aH-4VO"/>
                         <outlet property="addItemView" destination="9Jh-3i-8d2" id="iaf-Wc-XRW"/>
                         <outlet property="addProduct" destination="KcZ-4O-ekx" id="DCN-Gd-iaP"/>
                         <outlet property="imageHeight" destination="E8j-bI-WgC" id="RHR-3C-X45"/>
@@ -1133,7 +1124,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SzA-7D-VYr"/>
-        <segue reference="c0f-ZO-Qnr"/>
+        <segue reference="MJz-ck-XdF"/>
+        <segue reference="EFg-73-SxF"/>
     </inferredMetricsTieBreakers>
 </document>
