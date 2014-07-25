@@ -9,6 +9,7 @@
 #import "AddCategoryViewController.h"
 #import "ProductTableViewController.h"
 #import "Constants.h"
+#import "MBProgressHUD.h"
 #import <Parse/Parse.h>
 
 @interface AddCategoryViewController ()
@@ -115,99 +116,104 @@
 //This Button checks if the user has entered all parameters and adds a category to the table
 - (IBAction)addCategory:(id)sender
 {
-    if ([self.categoryName.text isEqualToString:@""])
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Fields not Filled"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-    else if (flag == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Image not Given"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-    else
-    {
-        NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
-        
-        PFObject *categories = [PFObject objectWithClassName:@"Categories"];
-        
-        categories[@"CategoryName"] = self.categoryName.text;
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
-        
-        [query whereKey:@"CategoryName" equalTo:self.categoryName.text];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             if (objects.count == 0)
+        if ([self.categoryName.text isEqualToString:@""])
+        {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  
+                                  initWithTitle:@"Error!"
+                                  message:@"Fields not Filled"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        else if (flag == 0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  
+                                  initWithTitle:@"Error!"
+                                  message:@"Image not Given"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            self.addCategory.enabled = NO;
+            
+            NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
+            
+            PFObject *categories = [PFObject objectWithClassName:@"Categories"];
+            
+            categories[@"CategoryName"] = self.categoryName.text;
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
+            
+            [query whereKey:@"CategoryName" equalTo:self.categoryName.text];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
              {
-                 NSData *imagedata = UIImageJPEGRepresentation(self.categoryImage.image, 0);
-                 
-                 PFFile *imagefile = [PFFile fileWithData:imagedata];
-                 
-                 categories[@"categoryImage"] = imagefile;
-                 
-                 [categories saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-                  {
-                      if (succeeded)
+                 if (objects.count == 0)
+                 {
+                     
+                     NSData *imagedata = UIImageJPEGRepresentation(self.categoryImage.image, 0);
+                     
+                     PFFile *imagefile = [PFFile fileWithData:imagedata];
+                     
+                     categories[@"categoryImage"] = imagefile;
+                     
+                     [categories saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                       {
-                          NSLog(@"Saved.");
-                          
-                          [addItem setObject:self.categoryName.text forKey:@1];
-                          
-                          [addItem setObject:imagefile forKey:@2];
-                          
-                          [categoryDetails addObject:addItem];
-                          
-                          [self.navigationController popViewControllerAnimated:YES];
-                          
-                      }
-                      else
-                      {
-                          NSLog(@"%@", error);
-                          
-                          UIAlertView *alert = [[UIAlertView alloc]
-                                                
-                                                initWithTitle:@"Error!"
-                                                message:@"There was an error in adding the new category,please try again"
-                                                delegate:nil
-                                                cancelButtonTitle:@"Dismiss"
-                                                otherButtonTitles:nil];
-                          [alert show];
-                      }
-                  }];
-                 
-             }
-             else
-             {
-                 // Log details of the failure
-                 NSLog(@"Error: %@ %@", error, [error userInfo]);
-                 
-                 UIAlertView *alert = [[UIAlertView alloc]
-                                       
-                                       initWithTitle:@"Error!"
-                                       message:@"The entered category name has already been taken, please specify a different item name"
-                                       delegate:nil
-                                       cancelButtonTitle:@"Dismiss"
-                                       otherButtonTitles:nil];
-                 [alert show];
-             }
-         }];
-
-    }
-    
+                          if (succeeded)
+                          {
+                              NSLog(@"Saved.");
+                              
+                              [addItem setObject:self.categoryName.text forKey:@1];
+                              
+                              [addItem setObject:imagefile forKey:@2];
+                              
+                              [categoryDetails addObject:addItem];
+                              
+                              [self.navigationController popViewControllerAnimated:YES];
+                              
+                          }
+                          else
+                          {
+                              NSLog(@"%@", error);
+                              
+                              UIAlertView *alert = [[UIAlertView alloc]
+                                                    
+                                                    initWithTitle:@"Error!"
+                                                    message:@"There was an error in adding the new category,please try again"
+                                                    delegate:nil
+                                                    cancelButtonTitle:@"Dismiss"
+                                                    otherButtonTitles:nil];
+                              [alert show];
+                              
+                              
+                          }
+                      }];
+                 }
+                 else
+                 {
+                     // Log details of the failure
+                     NSLog(@"Error: %@ %@", error, [error userInfo]);
+                     
+                     self.addCategory.enabled = YES;
+                     
+                     UIAlertView *alert = [[UIAlertView alloc]
+                                           
+                                           initWithTitle:@"Error!"
+                                           message:@"The entered category name has already been taken, please specify a different item name"
+                                           delegate:nil
+                                           cancelButtonTitle:@"Dismiss"
+                                           otherButtonTitles:nil];
+                     [alert show];
+                 }
+             }];
+            
+        }
 }
 
 @end

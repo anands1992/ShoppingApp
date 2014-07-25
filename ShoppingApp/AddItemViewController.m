@@ -147,6 +147,7 @@
 //This Button checks if the user has entered all parameters and adds a product to the table
 - (IBAction)AddProduct:(id)sender
 {
+    
     if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]) // checks if the textfields are left empty
     {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -172,6 +173,8 @@
     }
     else
     {
+        ((UIButton *)sender).enabled = NO;
+        
         NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
         
         PFObject *products = [PFObject objectWithClassName:@"Products"];
@@ -186,6 +189,8 @@
          {
              if (objects.count == 0)
              {
+                 self.addProduct.enabled = NO;
+                 
                  products[@"ProductDescription"] = self.itemDescription.text;
                  
                  products[@"ProductType"] = self.itemType;
@@ -235,6 +240,8 @@
              {
                  // Log details of the failure
                  NSLog(@"Error: %@ %@", error, [error userInfo]);
+                 
+                 self.addProduct.enabled = YES;
                  
                  UIAlertView *alert = [[UIAlertView alloc]
                                        

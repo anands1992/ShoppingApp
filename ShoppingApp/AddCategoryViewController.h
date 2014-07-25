@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *categoryView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addCategory;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
 
 @end

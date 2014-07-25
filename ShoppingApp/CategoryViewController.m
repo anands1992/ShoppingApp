@@ -17,7 +17,7 @@
 {
     NSMutableArray *categoryTable;
     
-    int i;
+    NSInteger i;
 }
 @end
 
