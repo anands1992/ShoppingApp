@@ -18,9 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *placeOffer;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *offerScroll;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *offerDescriptionHeight;
+@property (weak, nonatomic) IBOutlet UIView *addOfferView;
 
 @property (strong,nonatomic) NSMutableArray *offerData;
 

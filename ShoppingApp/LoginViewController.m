@@ -43,12 +43,12 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y - 90, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y - 120, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y+90, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 120, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

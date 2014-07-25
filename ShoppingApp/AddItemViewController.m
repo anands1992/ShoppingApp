@@ -150,26 +150,11 @@
     
     if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]) // checks if the textfields are left empty
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                                    message:@"Textfields not Filled"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
-        [alert show];
+        [self callAlert:@"Textfields not Filled"];
     }
     else if (flag != 1) // checks if the image has been entered
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Image Not Given"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
-
+        [self callAlert:@"Image Not Given"];
     }
     else
     {
@@ -223,14 +208,7 @@
                      {
                          NSLog(@"%@", error);
                          
-                         UIAlertView *alert = [[UIAlertView alloc]
-                                               
-                                               initWithTitle:@"Error!"
-                                               message:@"There was an error in adding the new item, please try again"
-                                               delegate:nil
-                                               cancelButtonTitle:@"Dismiss"
-                                               otherButtonTitles:nil];
-                         [alert show];
+                         [self callAlert:@"There was an error in adding the new item, please try again"];
                      }
                  }];
                  
@@ -243,17 +221,23 @@
                  
                  self.addProduct.enabled = YES;
                  
-                 UIAlertView *alert = [[UIAlertView alloc]
-                                       
-                                       initWithTitle:@"Error!"
-                                       message:@"The entered itemname has already been taken, please specify a different item name"
-                                       delegate:nil
-                                       cancelButtonTitle:@"Dismiss"
-                                       otherButtonTitles:nil];
-                 [alert show];
+                 [self callAlert:@"The entered itemname has already been taken, please specify a different item name"];
 
              }
          }];
     }
 }
+
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
 @end

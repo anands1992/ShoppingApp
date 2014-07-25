@@ -49,16 +49,14 @@
     
     self.productPicker.dataSource = self;
     self.productPicker.delegate = self;
-
+    
+    self.categoryPicker.hidden = YES;
     self.productPicker.hidden = YES;
     
     self.offerDescription.text = @"Offer Description";
     self.offerDescription.textColor = [UIColor blackColor];
     self.offerDescription.layer.borderWidth = 5.0f;
     self.offerDescription.layer.borderColor = [[UIColor grayColor]CGColor];
-    self.offerDescriptionHeight.constant = 80.0f;
-    
-    self.offerScroll.frame = CGRectMake(self.placeOffer.frame.origin.x, self.placeOffer.frame.origin.y, self.placeOffer.frame.size.width, self.placeOffer.frame.size.height +30);
 }
 
 //sets data into category picker
@@ -86,6 +84,7 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Textfield Delegate Methods
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
     return YES;
@@ -96,12 +95,17 @@
     self.offerDescription.text = @"";
     self.offerDescription.textColor = [UIColor blackColor];
     
-    self.offerScroll.frame = CGRectMake(self.offerScroll.frame.origin.x, self.offerScroll.frame.origin.y - 200, self.offerScroll.frame.size.width, self.offerScroll.frame.size.height);
+    self.addOfferView.frame = CGRectMake(self.addOfferView.frame.origin.x, self.addOfferView.frame.origin.y - 100, self.addOfferView.frame.size.width, self.addOfferView.frame.size.height);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.offerScroll.frame = CGRectMake(self.offerScroll.frame.origin.x, self.offerScroll.frame.origin.y + 200, self.offerScroll.frame.size.width, self.offerScroll.frame.size.height);
+    self.addOfferView.frame = CGRectMake(self.addOfferView.frame.origin.x, self.addOfferView.frame.origin.y + 100, self.addOfferView.frame.size.width, self.addOfferView.frame.size.height);
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Picker View Delegate Methods
@@ -140,13 +144,13 @@
 // Capture the picker view selection
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-   
     // This method is triggered whenever the user makes a change to the picker selection.
     if (pickerView==self.categoryPicker)
     {
         categoryName = [[categoryTable objectAtIndex:row]valueForKey:@"CategoryName"];
+
         PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-        [query whereKey:@"ProductType" equalTo:[[categoryTable objectAtIndex:row]valueForKey:@"CategoryName"]];
+        [query whereKey:@"ProductType" equalTo:categoryName];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (!error)
@@ -159,7 +163,6 @@
                  // Log details of the failure
                  NSLog(@"Error: %@ %@", error, [error userInfo]);
              }
-             self.productPicker.hidden = NO;
              
              [self.productPicker reloadAllComponents];
 
@@ -168,6 +171,7 @@
     else
     {
         productName = [[productTable objectAtIndex:row]valueForKey:@"ProductName"];
+
     }
 }
 
@@ -176,95 +180,110 @@
 {
     if ([self.offerDescription.text isEqualToString:@""])
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error"
-                                    message:@"Offer Description Empty"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                           otherButtonTitles:nil];
-        [alert show];
+        [self callAlert:@"Offer Description Empty"];
     }
     else if (categoryName == nil)
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Please select a Category"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
-
+        [self callAlert:@"Please Select a Category"];
     }
     else if (productName == nil)
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                              message:@"Please select a Product"
-                              delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
+        [self callAlert:@"Please Select a Product"];
     }
     else
     {
+        self.placeOffer.enabled = NO;
+        
         NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
         
         PFObject *offers = [PFObject objectWithClassName:@"Offers"];
         
         offers[@"ProductName"] = productName;
         
-        PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
+        PFQuery *offerQuery = [PFQuery queryWithClassName:@"Offers"];
         
-        [productQuery whereKey:@"ProductName" equalTo:productName];
+        [offerQuery whereKey:@"ProductName" equalTo:productName];
         
-        [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-            
-            offerImageData = [[objects  objectAtIndex:0] valueForKey:@"ProductImage"];
-            
-            offers[@"ProductImage"] = offerImageData;
-            
-            offers[@"ProductDescription"] = self.offerDescription.text;
-            
-            offers[@"ProductType"] = categoryName;
-            
-            [offers saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-             {
-                 if (succeeded)
+        [offerQuery findObjectsInBackgroundWithBlock:^(NSArray *offer, NSError *error)
+        {
+            if (offer.count == 0)
+            {
+                PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
+                
+                [productQuery whereKey:@"ProductName" equalTo:productName];
+                
+                [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
                  {
-                     [addItem setObject: productName forKey:@1];
+                     offerImageData = [[objects  objectAtIndex:0] valueForKey:@"ProductImage"];
                      
-                     [addItem setObject: offerImageData forKey:@2];
+                     offers[@"ProductImage"] = offerImageData;
                      
-                     [addItem setObject:self.offerDescription.text forKey:@3];
+                     offers[@"ProductDescription"] = self.offerDescription.text;
                      
-                     [addItem setObject:categoryName forKey:@4];
+                     offers[@"ProductType"] = categoryName;
                      
-                     [self.offerData addObject:addItem];
-                     
-                     [self.navigationController popViewControllerAnimated:YES];
-                 }
-                 else
-                 {
-                     NSLog(@"%@", error);
-                     
-                     UIAlertView *alert = [[UIAlertView alloc]
-                                           
-                                           initWithTitle:@"Error!"
-                                           message:@"There was an error in adding the new item, please try again"
-                                           delegate:nil
-                                           cancelButtonTitle:@"Dismiss"
-                                           otherButtonTitles:nil];
-                     [alert show];
-                 }
-             }];
-
+                     [offers saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                      {
+                          if (succeeded)
+                          {
+                              [addItem setObject: productName forKey:@1];
+                              
+                              [addItem setObject: offerImageData forKey:@2];
+                              
+                              [addItem setObject:self.offerDescription.text forKey:@3];
+                              
+                              [addItem setObject:categoryName forKey:@4];
+                              
+                              [self.offerData addObject:addItem];
+                              
+                              [self.navigationController popViewControllerAnimated:YES];
+                          }
+                          else
+                          {
+                              NSLog(@"%@", error);
+                              [self callAlert:@"There was an error in adding the new item, please try again"];
+                          }
+                      }];
+                 }];
+            }
+            else
+            {
+                self.placeOffer.enabled = YES;
+                [self callAlert:@"An Offer already exists for this product !!"];
+            }
         }];
-        
     }
+}
+
+- (IBAction)categoryPicker:(id)sender
+{
+    self.productPicker.hidden = YES;
+    self.categoryPicker.hidden = NO;
+}
+
+- (IBAction)productPicker:(id)sender
+{
+    if (categoryName == nil)
+    {
+        [self callAlert:@"Please Select a Category"];
+    }
+    else
+    {
+        self.categoryPicker.hidden = YES;
+        self.productPicker.hidden = NO;
+    }
+}
+
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

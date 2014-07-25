@@ -9,7 +9,6 @@
 #import "AddCategoryViewController.h"
 #import "ProductTableViewController.h"
 #import "Constants.h"
-#import "MBProgressHUD.h"
 #import <Parse/Parse.h>
 
 @interface AddCategoryViewController ()
@@ -24,7 +23,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -118,25 +118,11 @@
 {
         if ([self.categoryName.text isEqualToString:@""])
         {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  
-                                  initWithTitle:@"Error!"
-                                  message:@"Fields not Filled"
-                                  delegate:nil
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil];
-            [alert show];
+            [self callAlert:@"Category Name not Filled"];
         }
         else if (flag == 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  
-                                  initWithTitle:@"Error!"
-                                  message:@"Image not Given"
-                                  delegate:nil
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil];
-            [alert show];
+            [self callAlert:@"Image not Given"];
         }
         else
         {
@@ -182,16 +168,7 @@
                           {
                               NSLog(@"%@", error);
                               
-                              UIAlertView *alert = [[UIAlertView alloc]
-                                                    
-                                                    initWithTitle:@"Error!"
-                                                    message:@"There was an error in adding the new category,please try again"
-                                                    delegate:nil
-                                                    cancelButtonTitle:@"Dismiss"
-                                                    otherButtonTitles:nil];
-                              [alert show];
-                              
-                              
+                              [self callAlert:@"There was an error in adding the new category,please try again"];
                           }
                       }];
                  }
@@ -202,18 +179,24 @@
                      
                      self.addCategory.enabled = YES;
                      
-                     UIAlertView *alert = [[UIAlertView alloc]
-                                           
-                                           initWithTitle:@"Error!"
-                                           message:@"The entered category name has already been taken, please specify a different item name"
-                                           delegate:nil
-                                           cancelButtonTitle:@"Dismiss"
-                                           otherButtonTitles:nil];
-                     [alert show];
+                     [self callAlert:@"The entered category name has already been taken, please specify a different item name"];
                  }
              }];
             
         }
 }
+
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
 
 @end

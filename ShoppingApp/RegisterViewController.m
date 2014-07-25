@@ -109,11 +109,26 @@
         if (myStringMatchesRegEx)
         {
             user.username = self.eMail.text;
+            
+            user[@"email"] = self.eMail.text;
+            
             PFQuery *query = [PFQuery queryWithClassName:@"User"];
             [query whereKey:@"username" equalTo:self.eMail.text];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
             {
-                if (objects.count !=0)
+                if (objects.count == 0)
+                {
+                    user.password = self.password.text;
+                    
+                    user[@"UserID"] = isUser;
+                    
+                    [user signUpInBackground];
+                    
+                    [user saveInBackground];
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+                else
                 {
                     UIAlertView *alert = [[UIAlertView alloc]
                                           
@@ -123,14 +138,6 @@
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
                     [alert show];
-                }
-                else
-                {
-                    user.password = self.password.text;
-                    user[@"UserID"] = isUser;
-                    [user signUp];
-                    [user saveInBackground];
-                    [self dismissViewControllerAnimated:YES completion:nil];
                 }
             }];
         }
