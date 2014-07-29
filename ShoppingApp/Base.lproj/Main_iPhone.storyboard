@@ -649,9 +649,9 @@
                                     <constraint firstItem="krz-ML-uy5" firstAttribute="leading" secondItem="Ttp-9c-DLe" secondAttribute="leading" constant="15" id="NmE-Zj-aei"/>
                                     <constraint firstItem="krz-ML-uy5" firstAttribute="top" secondItem="Ttp-9c-DLe" secondAttribute="top" constant="113" id="Ns3-bs-1ol"/>
                                     <constraint firstItem="0EY-M8-sjZ" firstAttribute="leading" secondItem="Ttp-9c-DLe" secondAttribute="leading" constant="15" id="YJf-cE-aAX"/>
-                                    <constraint firstItem="62l-yc-9Dd" firstAttribute="top" secondItem="krz-ML-uy5" secondAttribute="bottom" constant="8" id="YsL-1D-rPI"/>
                                     <constraint firstAttribute="trailing" secondItem="l4m-a5-QVC" secondAttribute="trailing" constant="14" id="elq-qb-Gkc"/>
                                     <constraint firstItem="ope-sQ-S18" firstAttribute="leading" secondItem="Ttp-9c-DLe" secondAttribute="leading" constant="113" id="hXO-8O-y2r"/>
+                                    <constraint firstItem="62l-yc-9Dd" firstAttribute="top" secondItem="N4M-bD-sNW" secondAttribute="bottom" constant="178" id="u10-Tf-jS1"/>
                                 </constraints>
                             </view>
                         </subviews>
