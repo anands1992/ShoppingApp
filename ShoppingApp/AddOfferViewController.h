@@ -18,7 +18,11 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *categoryPicker;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryPickerHeightFromTop;
+
 @property (strong, nonatomic) IBOutlet UIPickerView *productPicker;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *productPickerHeightFromTop;
 
 @property (weak, nonatomic) IBOutlet UITextView *offerDescription;
 

@@ -667,9 +667,11 @@
                     <connections>
                         <outlet property="addOfferView" destination="Ttp-9c-DLe" id="cQB-VM-cdS"/>
                         <outlet property="categoryPicker" destination="krz-ML-uy5" id="Sf6-BM-kKp"/>
+                        <outlet property="categoryPickerHeightFromTop" destination="Ns3-bs-1ol" id="2mp-WN-Urd"/>
                         <outlet property="offerDescription" destination="62l-yc-9Dd" id="aAG-7M-VYL"/>
                         <outlet property="placeOffer" destination="ope-sQ-S18" id="Xvm-vE-HrU"/>
                         <outlet property="productPicker" destination="0EY-M8-sjZ" id="iTg-bj-lK6"/>
+                        <outlet property="productPickerHeightFromTop" destination="45k-HO-ON3" id="hbs-vT-Vjm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDG-a9-Voj" userLabel="First Responder" sceneMemberID="firstResponder"/>

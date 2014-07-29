@@ -53,6 +53,11 @@
     self.categoryPicker.hidden = YES;
     self.productPicker.hidden = YES;
     
+    self.categoryPickerHeightFromTop.constant = self.view.frame.size.height;
+    self.productPickerHeightFromTop.constant = self.view.frame.size.height;
+    
+    self.productPicker.frame = CGRectMake(self.productPicker.frame.origin.x, self.view.frame.size.height, self.productPicker.frame.size.width, self.productPicker.frame.size.height);
+    
     self.offerDescription.text = @"Offer Description";
     self.offerDescription.textColor = [UIColor blackColor];
     self.offerDescription.layer.borderWidth = 5.0f;
@@ -231,13 +236,13 @@
                       {
                           if (succeeded)
                           {
-                              [addItem setObject: productName forKey:@1];
+                              [addItem setObject: productName forKey:@"Product Name"];
                               
-                              [addItem setObject: offerImageData forKey:@2];
+                              [addItem setObject: offerImageData forKey:@"Offer Image"];
                               
-                              [addItem setObject:self.offerDescription.text forKey:@3];
+                              [addItem setObject:self.offerDescription.text forKey:@"Offer Description"];
                               
-                              [addItem setObject:categoryName forKey:@4];
+                              [addItem setObject:categoryName forKey:@"Category Name"];
                               
                               [self.offerData addObject:addItem];
                               
@@ -262,13 +267,32 @@
 
 - (IBAction)categoryPicker:(id)sender
 {
-    
     self.productPicker.hidden = YES;
     self.categoryPicker.hidden = NO;
+    
+    [UIView animateWithDuration:3.0 animations:^{
+       
+        self.categoryPickerHeightFromTop.constant = 113;
+        
+    }];
+    
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    
 }
 
 - (IBAction)productPicker:(id)sender
 {
+    self.categoryPicker.hidden = YES;
+    self.productPicker.hidden = NO;
+    
+    [UIView animateWithDuration:3.0 animations:^{
+        
+        self.productPickerHeightFromTop.constant = 113;
+        
+    }];
+    
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+
     if (categoryName == nil)
     {
         categoryName = [[categoryTable objectAtIndex:0]valueForKey:@"CategoryName"];
@@ -290,13 +314,6 @@
              [self.productPicker reloadAllComponents];
              
          }];
-        self.categoryPicker.hidden = YES;
-        self.productPicker.hidden = NO;
-    }
-    else
-    {
-        self.categoryPicker.hidden = YES;
-        self.productPicker.hidden = NO;
     }
 }
 
