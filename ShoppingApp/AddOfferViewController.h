@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddOfferViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIPickerViewAccessibilityDelegate>
+@protocol pickerviewAnimatefromBottomDelegate <NSObject>
+
+-(void)pickerviewAnimatefromBottom;
+
+@end
+
+@interface AddOfferViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIPickerViewAccessibilityDelegate,UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UIPickerView *categoryPicker;
 

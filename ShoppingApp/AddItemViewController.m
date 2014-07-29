@@ -13,7 +13,7 @@
 
 @interface AddItemViewController ()
 {
-    int flag;
+    int imageSetFlag;
 }
 @end
 
@@ -50,7 +50,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (flag == 0)
+    if (imageSetFlag == 0)
     {
         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 45, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
@@ -60,7 +60,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (flag == 0)
+    if (imageSetFlag == 0)
     {
         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 45, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
@@ -72,7 +72,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (flag == 0)
+    if (imageSetFlag == 0)
     {
         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
@@ -82,7 +82,7 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (flag == 0)
+    if (imageSetFlag == 0)
     {
         self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
@@ -117,7 +117,7 @@
     
     self.itemImage.image = chosenImage;
     
-    flag = 1;
+    imageSetFlag = 1;
     
     self.imageHeight.constant = 60;
     
@@ -127,7 +127,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    flag = 0;
+    imageSetFlag = 0;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -152,7 +152,7 @@
     {
         [self callAlert:@"Textfields not Filled"];
     }
-    else if (flag != 1) // checks if the image has been entered
+    else if (imageSetFlag != 1) // checks if the image has been entered
     {
         [self callAlert:@"Image Not Given"];
     }
@@ -186,18 +186,19 @@
                  
                  products[@"ProductImage"] = imagefile;
                  
-                 [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                 [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                 {
                      if (succeeded)
                      {
                          NSLog(@"Saved.");
                          
-                         [addItem setObject:self.itemName.text forKey:@1];
+                         [addItem setObject:self.itemName.text forKey:@"Product Name"];
                          
-                         [addItem setObject:imagefile forKey:@2];
+                         [addItem setObject:imagefile forKey:@"Product Image"];
                          
-                         [addItem setObject:self.itemDescription.text forKey:@3];
+                         [addItem setObject:self.itemDescription.text forKey:@"Product Description"];
                          
-                         [addItem setObject:self.itemType forKey:@4];
+                         [addItem setObject:self.itemType forKey:@"Product Type"];
                          
                          [self.productData addObject:addItem];
                          
@@ -228,6 +229,7 @@
     }
 }
 
+//Function for Calling alerts
 - (void) callAlert:(NSString*)alertMessage
 {
     UIAlertView *alert = [[UIAlertView alloc]

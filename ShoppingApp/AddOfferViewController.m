@@ -184,11 +184,16 @@
     }
     else if (categoryName == nil)
     {
-        [self callAlert:@"Please Select a Category"];
+      //  [self callAlert:@"Please Select a Category"];
+        categoryName = [[categoryTable objectAtIndex:0]valueForKey:@"CategoryName"];
+        NSLog(@"%@",categoryName);
+        
     }
     else if (productName == nil)
     {
-        [self callAlert:@"Please Select a Product"];
+       // [self callAlert:@"Please Select a Product"];
+        productName = [[productTable objectAtIndex:0]valueForKey:@"ProductName"];
+        NSLog(@"%@",productName);
     }
     else
     {
@@ -257,6 +262,7 @@
 
 - (IBAction)categoryPicker:(id)sender
 {
+    
     self.productPicker.hidden = YES;
     self.categoryPicker.hidden = NO;
 }
@@ -265,7 +271,27 @@
 {
     if (categoryName == nil)
     {
-        [self callAlert:@"Please Select a Category"];
+        categoryName = [[categoryTable objectAtIndex:0]valueForKey:@"CategoryName"];
+        PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+        [query whereKey:@"ProductType" equalTo:categoryName];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             if (!error)
+             {
+                 productTable = [[NSMutableArray alloc] initWithArray:objects];
+                 // The find succeeded. The first 100 objects are available in objects
+             }
+             else
+             {
+                 // Log details of the failure
+                 NSLog(@"Error: %@ %@", error, [error userInfo]);
+             }
+             
+             [self.productPicker reloadAllComponents];
+             
+         }];
+        self.categoryPicker.hidden = YES;
+        self.productPicker.hidden = NO;
     }
     else
     {
@@ -274,6 +300,7 @@
     }
 }
 
+//Function for calling alerts
 - (void) callAlert:(NSString*)alertMessage
 {
     UIAlertView *alert = [[UIAlertView alloc]

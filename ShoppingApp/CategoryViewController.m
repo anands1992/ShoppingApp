@@ -29,13 +29,13 @@
 {
     [super viewDidLoad];
     
-    if([[NSUserDefaults standardUserDefaults]boolForKey:LOGGEDINSTATUS])
+    if([[NSUserDefaults standardUserDefaults]boolForKey:LOGGED_IN_STATUS])
     {
         
     }
     else
     {
-        [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
+        [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_CATEGORIES_TAB sender:self];
     }
     
     categoryTable = [[NSMutableArray alloc]init];
@@ -52,7 +52,7 @@
     [super viewWillAppear:YES];
     
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID"] isEqualToString:isAdmin])
+    if ([user[@"UserID"] isEqualToString:is_Admin])
     {
         
     }
@@ -115,14 +115,15 @@
 {
     i = indexPath.row;
    
-    [self performSegueWithIdentifier:PUSHTOPRODUCTSCREEN sender:self];
+    [self performSegueWithIdentifier:PUSH_TO_PRODUCT_SCREEN sender:self];
 }
 
+//Checks whether the cell has to be editable or not
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    if ([user[@"UserID" ] isEqualToString:is_Admin])
     {
         return YES;
     }
@@ -131,7 +132,7 @@
         return NO;
     }
 }
-
+//This function is responsible for enabling the swipeable cell feature
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -163,9 +164,10 @@
     }
 }
 
+#pragma mark - Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:PUSHTOPRODUCTSCREEN])
+    if ([segue.identifier isEqualToString:PUSH_TO_PRODUCT_SCREEN])
     {
             ProductTableViewController *products = [segue destinationViewController];
             
@@ -176,18 +178,18 @@
 #pragma mark - IBAction
 - (IBAction)Logout:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGEDINSTATUS];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [PFUser logOut];
     
-    [self performSegueWithIdentifier:PUSHTOLOGINSCREEENFROMCATEGORIESTAB sender:self];
+    [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_CATEGORIES_TAB sender:self];
 }
 
 - (IBAction)addCategory:(id)sender
 {
-    [self performSegueWithIdentifier:ADDCATEGORY sender:self];
+    [self performSegueWithIdentifier:ADD_CATEGORY sender:self];
 }
 
 @end

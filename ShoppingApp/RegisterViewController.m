@@ -70,34 +70,20 @@
 
 #pragma mark - IBAction
 
+//This Button checks if the user has entered all the fields and if true, then checks if the enetered e-mail is already registered in the database, if no, the details are entered and the user is signed up.
 - (IBAction)Register:(id)sender
 {
     if ([self.name.text isEqualToString:@""]||[self.eMail.text isEqualToString:@""]||[self.password.text isEqualToString:@""]||[self.confirmPassword.text isEqualToString:@""])
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                                    message:@"Fields not Filled"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
-        [alert show];
+        [self callAlert:@"Fields not Filled"];
     }
     
     else if (![self.password.text isEqualToString:self.confirmPassword.text])
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"Error!"
-                                    message:@"Passwords Do Not Match"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
-        [alert show];
+        [self callAlert:@"Passwords Do Not Match"];
     }
     
     else
-        
     {
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@qburst.com";
         NSPredicate *emailTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -120,7 +106,7 @@
                 {
                     user.password = self.password.text;
                     
-                    user[@"UserID"] = isUser;
+                    user[@"UserID"] = is_User;
                     
                     [user signUpInBackground];
                     
@@ -130,30 +116,29 @@
                 }
                 else
                 {
-                    UIAlertView *alert = [[UIAlertView alloc]
-                                          
-                                          initWithTitle:@"Error!"
-                                          message:@"This E-Mail is Already Registered"
-                                          delegate:nil
-                                          cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles:nil];
-                    [alert show];
+                    [self callAlert:@"This E-Mail is Already Registered"];
                 }
             }];
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  
-                                  initWithTitle:@"Error!"
-                                        message:@"E-Mail Format Invalid"
-                                       delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-            [alert show];
+            [self callAlert:@"E-Mail Format Invalid"];
         }
         
     }
+}
+
+//Function for Calling alerts
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

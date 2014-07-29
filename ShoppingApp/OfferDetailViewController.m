@@ -66,7 +66,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:PUSHTOPURCHASESCREEN])
+    if ([segue.identifier isEqualToString:PUSH_TO_PURCHASE_SCREEN])
     {
         ProductDetailViewController *products = [segue destinationViewController];
         
@@ -77,7 +77,7 @@
 #pragma mark - IBAction
 - (IBAction)proceedToBuy:(id)sender
 {
-    [self performSegueWithIdentifier: PUSHTOPURCHASESCREEN sender:self];
+    [self performSegueWithIdentifier: PUSH_TO_PURCHASE_SCREEN sender:self];
 }
 
 @end

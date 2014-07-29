@@ -50,7 +50,7 @@
     [super viewWillAppear:YES];
     
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    if ([user[@"UserID" ] isEqualToString:is_Admin])
     {
         
     }
@@ -114,14 +114,14 @@
 {
     self.productKey = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
     
-    [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
+    [self performSegueWithIdentifier:PUSH_TO_DETAIL_VIEW sender:self];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    if ([user[@"UserID" ] isEqualToString:is_Admin])
     {
         return YES;
     }
@@ -152,13 +152,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:PUSHTODETAILVIEW])
+    if ([segue.identifier isEqualToString:PUSH_TO_DETAIL_VIEW])
     {
         ProductDetailViewController *products = [segue destinationViewController];
         
         products.productKey = self.productKey;
     }
-    else  if ([segue.identifier isEqualToString:ADDPRODUCT])
+    else  if ([segue.identifier isEqualToString:ADD_PRODUCT])
     {
         AddItemViewController *addItem = [segue destinationViewController];
         
@@ -170,7 +170,7 @@
 
 - (IBAction)addItem:(id)sender
 {
-    [self performSegueWithIdentifier:ADDPRODUCT sender:self];
+    [self performSegueWithIdentifier:ADD_PRODUCT sender:self];
 }
 
 @end

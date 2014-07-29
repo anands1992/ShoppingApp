@@ -35,7 +35,7 @@
     
     PFUser *user = [PFUser currentUser];
     
-    if ([user[@"UserID"] isEqualToString:isAdmin])
+    if ([user[@"UserID"] isEqualToString:is_Admin])
     {
         
     }
@@ -108,14 +108,14 @@
 {
     dict = [offerTable objectAtIndex:indexPath.row];
     
-    [self performSegueWithIdentifier:PUSHTODETAILVIEW sender:self];
+    [self performSegueWithIdentifier:PUSH_TO_DETAIL_VIEW sender:self];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:isAdmin])
+    if ([user[@"UserID" ] isEqualToString:is_Admin])
     {
         return YES;
     }
@@ -146,13 +146,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:PUSHTODETAILVIEW])
+    if ([segue.identifier isEqualToString:PUSH_TO_DETAIL_VIEW])
     {
         OfferDetailViewController *offers = [segue destinationViewController];
         
         offers.offerDetailViews = dict;
     }
-    else if ([segue.identifier isEqualToString:ADDOFFER])
+    else if ([segue.identifier isEqualToString:ADD_OFFER])
     {
         AddOfferViewController *offers = [segue destinationViewController];
         
@@ -164,11 +164,11 @@
 
 - (IBAction)Logout:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGEDINSTATUS];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[GPPSignIn sharedInstance] signOut];
     [PFUser logOut];
-    [self performSegueWithIdentifier:PUSHTOLOGINSCREENFROMOFFERSTAB sender:self];
+    [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_OFFERS_TAB sender:self];
 }
 
 @end

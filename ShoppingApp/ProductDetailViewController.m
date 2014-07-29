@@ -49,7 +49,8 @@
              
              [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
               {
-                  if (!error) {
+                  if (!error)
+                  {
                       self.productImage.image = [UIImage imageWithData:data];
                   }
               }];
@@ -62,7 +63,6 @@
              
              [_productDescription sizeToFit];
              
-
          }
          else
          {

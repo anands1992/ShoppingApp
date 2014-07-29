@@ -70,14 +70,14 @@
 }
 
 #pragma mark - IBAction
-
+//Checks for a user with entered login details and if he is present, then it signs him in, else alert message is shown
 - (IBAction)Login:(id)sender
 {
         [PFUser logInWithUsernameInBackground:self.userName.text password:self.Password.text
                                         block:^(PFUser *user, NSError *error) {
                                             if (user)
                                             {
-                                                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:LOGGEDINSTATUS];
+                                                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:LOGGED_IN_STATUS];
                                                 [[NSUserDefaults standardUserDefaults] synchronize];
                                                 
                                                 [self dismissViewControllerAnimated:YES completion:nil];

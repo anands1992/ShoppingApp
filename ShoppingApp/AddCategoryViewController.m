@@ -14,7 +14,7 @@
 @interface AddCategoryViewController ()
 {
     NSMutableArray *categoryDetails;
-    int flag;
+    int imageSetFlag;
 }
 @end
 
@@ -76,23 +76,23 @@
 }
 
 #pragma mark - Image Picker Controller delegate methods
-
+//Gets called if the image has been successfully chosen
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.categoryImage.image = chosenImage;
     
-    flag = 1;
+    imageSetFlag = 1;
     
     self.imageHeight.constant = 60;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
+//Gets called when the user cancels his image selection
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    flag = 0;
+    imageSetFlag = 0;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -120,7 +120,7 @@
         {
             [self callAlert:@"Category Name not Filled"];
         }
-        else if (flag == 0)
+        else if (imageSetFlag == 0)
         {
             [self callAlert:@"Image not Given"];
         }
@@ -155,9 +155,9 @@
                           {
                               NSLog(@"Saved.");
                               
-                              [addItem setObject:self.categoryName.text forKey:@1];
+                              [addItem setObject:self.categoryName.text forKey:@"Category Name"];
                               
-                              [addItem setObject:imagefile forKey:@2];
+                              [addItem setObject:imagefile forKey:@"Category Image"];
                               
                               [categoryDetails addObject:addItem];
                               
@@ -185,7 +185,7 @@
             
         }
 }
-
+//Function for Calling alerts
 - (void) callAlert:(NSString*)alertMessage
 {
     UIAlertView *alert = [[UIAlertView alloc]
