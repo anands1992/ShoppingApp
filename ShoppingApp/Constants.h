@@ -26,7 +26,7 @@
 #define LOGGED_IN_STATUS @"isLoggedIn"
 
 //Heights
-#define Picker_Height 100
+#define Picker_Height 220
 #define Image_Height 60
 
 #endif
