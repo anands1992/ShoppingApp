@@ -84,7 +84,7 @@
     
     imageSetFlag = 1;
     
-    self.imageHeight.constant = 60;
+    self.imageHeight.constant = Image_Height;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -197,6 +197,5 @@
                           otherButtonTitles:nil];
     [alert show];
 }
-
 
 @end

@@ -147,6 +147,7 @@
 //This Button checks if the user has entered all parameters and adds a product to the table
 - (IBAction)AddProduct:(id)sender
 {
+    [self.view endEditing:YES];
     
     if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]) // checks if the textfields are left empty
     {
@@ -158,7 +159,6 @@
     }
     else
     {
-        ((UIButton *)sender).enabled = NO;
         
         NSMutableDictionary *addItem = [[NSMutableDictionary alloc]init];
         
@@ -168,9 +168,10 @@
         
         PFQuery *query = [PFQuery queryWithClassName:@"Products"];
         
+        // to check if the given item with same name already exists in the database
         [query whereKey:@"ProductName" equalTo:self.itemName.text];
         
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) // to check if the given item with same name already exists in the database
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (objects.count == 0)
              {

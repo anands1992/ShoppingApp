@@ -50,15 +50,9 @@
     [super viewWillAppear:YES];
     
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:is_Admin])
-    {
-        
-    }
-    else
-    {
+    if ([user[@"UserID" ] isEqualToString:is_User])
         self.navigationItem.rightBarButtonItem=nil;
-    }
-    
+
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
     [query whereKey:@"ProductType" equalTo:self.key];
@@ -162,9 +156,10 @@
     {
         AddItemViewController *addItem = [segue destinationViewController];
         
-        addItem.itemType = _key;
+        addItem.itemType = self.key;
         
         addItem.productData = productArray;
+        
     }
 }
 

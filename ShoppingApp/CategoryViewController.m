@@ -52,14 +52,10 @@
     [super viewWillAppear:YES];
     
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID"] isEqualToString:is_Admin])
-    {
+    
+    if ([user[@"UserID"] isEqualToString:is_User])
         
-    }
-    else
-    {
         self.navigationItem.leftBarButtonItem=nil;
-    }
     
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     

@@ -15,14 +15,18 @@
 #define PUSH_TO_PURCHASE_SCREEN @"PushToBuy"
 #define PUSH_TO_LOGIN_SCREEEN_FROM_CATEGORIES_TAB @"CategoryLoginModal"
 #define PUSH_TO_LOGIN_SCREEEN_FROM_OFFERS_TAB @"OfferLoginModal"
-#define ADD_PRODUCT @"ADDPRODUCT"
-#define ADD_CATEGORY @"ADDCATEGORY"
-#define ADD_OFFER @"ADDOFFER"
+#define ADD_PRODUCT @"AddProduct"
+#define ADD_CATEGORY @"AddCategory"
+#define ADD_OFFER @"AddOffer"
 
 #define is_Admin @"admin"
 #define is_User @"user"
 
 //Logged In Status
 #define LOGGED_IN_STATUS @"isLoggedIn"
+
+//Heights
+#define Picker_Height 100
+#define Image_Height 60
 
 #endif

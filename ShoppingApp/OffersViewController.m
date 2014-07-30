@@ -32,18 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    PFUser *user = [PFUser currentUser];
-    
-    if ([user[@"UserID"] isEqualToString:is_Admin])
-    {
-        
-    }
-    else
-    {
-        self.navigationItem.leftBarButtonItem=nil;
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,6 +41,11 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    PFUser *user = [PFUser currentUser];
+    
+    if ([user[@"UserID"] isEqualToString:is_User])
+        self.navigationItem.leftBarButtonItem=nil;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Offers"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {

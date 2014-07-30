@@ -22,8 +22,6 @@
     NSString *productName;
     
     PFFile *offerImageData;
-    
-    int flag;
 }
 @end
 
@@ -50,16 +48,13 @@
     self.productPicker.dataSource = self;
     self.productPicker.delegate = self;
     
-    self.categoryPicker.hidden = YES;
-    self.productPicker.hidden = YES;
-    
     self.categoryPickerHeightFromTop.constant = self.view.frame.size.height;
     self.productPickerHeightFromTop.constant = self.view.frame.size.height;
     
     self.offerDescription.text = @"Offer Description";
-    self.offerDescription.textColor = [UIColor blackColor];
+    self.offerDescription.textColor = [UIColor lightGrayColor];
     self.offerDescription.layer.borderWidth = 5.0f;
-    self.offerDescription.layer.borderColor = [[UIColor grayColor]CGColor];
+    self.offerDescription.layer.borderColor = [[UIColor cyanColor]CGColor];
 }
 
 //sets data into category picker
@@ -87,7 +82,7 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Textfield Delegate Methods
+#pragma mark - Textview Delegate Methods
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
     return YES;
@@ -96,7 +91,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     self.offerDescription.text = @"";
-    self.offerDescription.textColor = [UIColor blackColor];
+    self.offerDescription.textColor = [UIColor lightGrayColor];
     
     self.addOfferView.frame = CGRectMake(self.addOfferView.frame.origin.x, self.addOfferView.frame.origin.y - 100, self.addOfferView.frame.size.width, self.addOfferView.frame.size.height);
 }
@@ -104,6 +99,11 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     self.addOfferView.frame = CGRectMake(self.addOfferView.frame.origin.x, self.addOfferView.frame.origin.y + 100, self.addOfferView.frame.size.width, self.addOfferView.frame.size.height);
+    
+    if ([self.offerDescription.text  isEqual: @""])
+    {
+        self.offerDescription.text = @"Offer Description";
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -189,14 +189,11 @@
     {
       //  [self callAlert:@"Please Select a Category"];
         categoryName = [[categoryTable objectAtIndex:0]valueForKey:@"CategoryName"];
-        NSLog(@"%@",categoryName);
-        
     }
     else if (productName == nil)
     {
        // [self callAlert:@"Please Select a Product"];
         productName = [[productTable objectAtIndex:0]valueForKey:@"ProductName"];
-        NSLog(@"%@",productName);
     }
     else
     {
@@ -267,30 +264,25 @@
 {
     
     self.productPickerHeightFromTop.constant = self.view.frame.size.height;
-    
-    self.productPicker.hidden = YES;
-    self.categoryPicker.hidden = NO;
+
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:1.0 animations:^{
        
-        self.categoryPickerHeightFromTop.constant = 113;
+        self.categoryPickerHeightFromTop.constant = Picker_Height;
         [self.view layoutIfNeeded];
     }];
     
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    
 }
 
 - (IBAction)productPicker:(id)sender
 {
     self.categoryPickerHeightFromTop.constant = self.view.frame.size.height;
-    
-    self.categoryPicker.hidden = YES;
-    self.productPicker.hidden = NO;
+
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:1.0 animations:^{
         
-        self.productPickerHeightFromTop.constant = 113;
+        self.productPickerHeightFromTop.constant = Picker_Height;
         [self.view layoutIfNeeded];
     }];
     
