@@ -2,7 +2,7 @@
 //  AddCategoryViewController.m
 //  ShoppingApp
 //
-//  Created by qbadmin on 17/07/14.
+//  Created by qburst on 17/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 

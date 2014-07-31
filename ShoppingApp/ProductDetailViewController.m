@@ -61,10 +61,11 @@
              
              [self.productScroll sizeToFit];
              
-             _productDescription.numberOfLines = 0; //will wrap text in new line
+             self.productDescription.numberOfLines = 0; //will wrap text in new line
              
-             [_productDescription sizeToFit];
+             [self.productDescription sizeToFit];
              
+             self.productPrice.text = [NSString stringWithFormat:@"Price : Rs %@",[_productDetailViews valueForKey:@"ProductPrice"]];
          }
          else
          {
@@ -94,6 +95,8 @@
     cart[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
     
     cart[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+    
+    cart[@"ProductPrice"] = [self.productDetailViews valueForKey:@"ProductPrice"];
     
     PFUser *user = [PFUser currentUser];
     

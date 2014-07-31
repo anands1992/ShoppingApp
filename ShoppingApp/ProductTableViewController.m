@@ -2,7 +2,7 @@
 //  ProductsTableViewController.m
 //  ShoppingApp
 //
-//  Created by qbadmin on 15/07/14.
+//  Created by qburst on 15/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
@@ -71,7 +71,6 @@
          }
          [self.tableView reloadData];
      }];
-    
 }
 
 #pragma mark - Table view data source
@@ -93,14 +92,18 @@
     
     cell.productName.text = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
     
+    cell.productPrice.text = [NSString stringWithFormat:@"Price : Rs %@",[[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductPrice"]];
+    
     PFFile *imageFile = [[productArray objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+    {
+        if (!error)
+        {
             cell.productImage.image = [UIImage imageWithData:data];
         }
     }];
-    
+
     return cell;
 }
 

@@ -1,14 +1,14 @@
 //
-//  CategoryTableViewCell.m
+//  TotalAmountTableViewCell.m
 //  ShoppingApp
 //
-//  Created by qburst on 15/07/14.
+//  Created by qburst on 31/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
-#import "CategoryTableViewCell.h"
+#import "TotalAmountTableViewCell.h"
 
-@implementation CategoryTableViewCell
+@implementation TotalAmountTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

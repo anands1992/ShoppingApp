@@ -2,7 +2,7 @@
 //  CategoryTableViewCell.h
 //  ShoppingApp
 //
-//  Created by qbadmin on 15/07/14.
+//  Created by qburst on 15/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 

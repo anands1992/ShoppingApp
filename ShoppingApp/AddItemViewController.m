@@ -2,7 +2,7 @@
 //  AddItemViewController.m
 //  ShoppingApp
 //
-//  Created by qbadmin on 15/07/14.
+//  Created by qburst on 15/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
@@ -149,7 +149,7 @@
 {
     [self.view endEditing:YES];
     
-    if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]) // checks if the textfields are left empty
+    if ([self.itemName.text isEqualToString:@""]||[self.itemDescription.text isEqualToString:@""]||[self.itemPrice.text isEqualToString:@""]) // checks if the textfields are left empty
     {
         [self callAlert:@"Textfields not Filled"];
     }
@@ -181,41 +181,53 @@
                  
                  products[@"ProductType"] = self.itemType;
                  
-                 NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
-                 
-                 PFFile *imagefile = [PFFile fileWithData:imagedata];
-                 
-                 products[@"ProductImage"] = imagefile;
-                 
-                 [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-                 {
-                     if (succeeded)
-                     {
-                         NSLog(@"Saved.");
-                         
-                         [addItem setObject:self.itemName.text forKey:@"Product Name"];
-                         
-                         [addItem setObject:imagefile forKey:@"Product Image"];
-                         
-                         [addItem setObject:self.itemDescription.text forKey:@"Product Description"];
-                         
-                         [addItem setObject:self.itemType forKey:@"Product Type"];
-                         
-                         [self.productData addObject:addItem];
-                         
-                         [self.navigationController popViewControllerAnimated:YES];
-                         
-                     }
-                     else
-                     {
-                         NSLog(@"%@", error);
-                         
-                         [self callAlert:@"There was an error in adding the new item, please try again"];
-                     }
-                 }];
-                 
-             }
+                 NSString *emailRegex = @"[0-9]";
+                 NSPredicate *emailTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+                 BOOL myStringMatchesRegEx=[emailTest evaluateWithObject:self.itemPrice.text];
 
+                 if (myStringMatchesRegEx)
+                 {
+                     products[@"ProductPrice"] = self.itemPrice.text;
+                     
+                     NSData *imagedata = UIImageJPEGRepresentation(self.itemImage.image, 0);
+                     
+                     PFFile *imagefile = [PFFile fileWithData:imagedata];
+                     
+                     products[@"ProductImage"] = imagefile;
+                     
+                     [products saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                      {
+                          if (succeeded)
+                          {
+                              NSLog(@"Saved.");
+                              
+                              [addItem setObject:self.itemName.text forKey:@"Product Name"];
+                              
+                              [addItem setObject:imagefile forKey:@"Product Image"];
+                              
+                              [addItem setObject:self.itemDescription.text forKey:@"Product Description"];
+                              
+                              [addItem setObject:self.itemType forKey:@"Product Type"];
+                              
+                              [addItem setObject:self.itemPrice.text forKey:@"Product Price"];
+                              
+                              [self.productData addObject:addItem];
+                              
+                              [self.navigationController popViewControllerAnimated:YES];
+                              
+                          }
+                          else
+                          {
+                              NSLog(@"%@", error);
+                              
+                              [self callAlert:@"There was an error in adding the new item, please try again"];
+                          }
+                      }];
+                     
+                 }
+                 else
+                     [self callAlert:@"Please Input a number for The Product Price"];
+             }
              else
              {
                  // Log details of the failure

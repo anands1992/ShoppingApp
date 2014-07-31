@@ -2,7 +2,7 @@
 //  AddOfferViewController.h
 //  ShoppingApp
 //
-//  Created by qbadmin on 22/07/14.
+//  Created by qburst on 22/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 

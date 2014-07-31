@@ -2,7 +2,7 @@
 //  AddItemViewController.h
 //  ShoppingApp
 //
-//  Created by qbadmin on 15/07/14.
+//  Created by qburst on 15/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *itemName;
 
 @property (weak, nonatomic) IBOutlet UITextView *itemDescription;
+
+@property (weak, nonatomic) IBOutlet UITextField *itemPrice;
 
 @property (weak, nonatomic) IBOutlet UIButton *addProduct;
 

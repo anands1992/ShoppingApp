@@ -2,7 +2,7 @@
 //  ShoppingCartTableViewCell.h
 //  ShoppingApp
 //
-//  Created by qbadmin on 30/07/14.
+//  Created by qburst on 30/07/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
@@ -14,4 +14,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *productName;
 
+@property (weak, nonatomic) IBOutlet UILabel *productPrice;
 @end
