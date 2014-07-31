@@ -22,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *securityQuestionAnswer;
 
+@property (weak, nonatomic) IBOutlet UIButton *Signup;
+
 @property (weak, nonatomic) IBOutlet UIButton *Submit;
 
 @property (weak, nonatomic) IBOutlet UIButton *Cancel;

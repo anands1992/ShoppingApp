@@ -101,17 +101,15 @@
     }
     else
     {
-        self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+        self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+        
+        self.Signup.hidden = YES;
         
         PFQuery *query = [PFQuery queryWithClassName:@"User"];
         [query whereKey:@"username" equalTo:self.userName.text];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
-             self.securityQuestion.text = [objects valueForKey:@"SecurityQuestion"];
-             if ([self.securityQuestionAnswer.text isEqualToString:[objects valueForKey:@"SecurityQuestionAnswer"]])
-             {
-                 NSLog(@"hi");
-             }
+             self.securityQuestion.text = @"Hi";//[objects valueForKey:@"SecurityQuestion"];
          }];
         
         [UIView animateWithDuration:1.5 animations:^{
@@ -125,11 +123,13 @@
 
 - (IBAction)Cancel:(id)sender
 {
-    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
     
     self.securityQuestion.hidden = YES;
     self.securityQuestionAnswer.hidden = YES;
     self.Submit.hidden = YES;
+    self.Cancel.hidden = YES;
+    self.Signup.hidden = NO;
 }
 
 //Function for Calling Alerts
