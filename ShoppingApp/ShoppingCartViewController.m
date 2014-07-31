@@ -15,7 +15,6 @@
 @interface ShoppingCartViewController ()
 {
     NSMutableArray *Cart;
-    float totalPrice;
 }
 @end
 
@@ -82,10 +81,6 @@
     
     cell.productPrice.text = [NSString stringWithFormat:@"Price : %@",[[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductPrice"]];
     
-    NSString *price = cell.productPrice.text;
-    
-    totalPrice += [price floatValue];
-    
     PFFile *imageFile = [[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
@@ -100,6 +95,12 @@
     }
     else if (indexPath.row==Cart.count)
     {
+        NSArray *priceArray = [Cart valueForKey:@"ProductPrice"];
+        float totalprice = 0.0;
+        for (NSString *price in priceArray)
+        {
+            totalprice += [price floatValue];
+        }
         static NSString *cellName = @"TotalAmountCell";
         TotalAmountTableViewCell *totalAmountCell = (TotalAmountTableViewCell*)
         [tableView dequeueReusableCellWithIdentifier:cellName];
@@ -107,9 +108,8 @@
         {
             totalAmountCell = [[TotalAmountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         }
-        
-        totalAmountCell.totalAmount.text = [NSString stringWithFormat:@"%f",totalPrice];
-        
+        NSLog(@"%f",totalprice);
+        totalAmountCell.totalAmount.text = [NSString stringWithFormat:@"%f",totalprice];
         return totalAmountCell;
     }
     return nil;
@@ -117,7 +117,12 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    if (indexPath.row==Cart.count)
+    {
+        return NO;
+    }
+    else
+        return YES;
 }
 
 

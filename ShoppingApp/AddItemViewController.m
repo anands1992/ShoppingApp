@@ -10,6 +10,7 @@
 #import "ProductTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
+#import "Constants.h"
 
 @interface AddItemViewController ()
 {
@@ -74,20 +75,20 @@
 {
     if (imageSetFlag == 0)
     {
-        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 110, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
     else
-        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 150, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y - 180, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if (imageSetFlag == 0)
     {
-        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 80, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 110, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
     }
     else
-        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 150, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
+        self.addItemView.frame = CGRectMake(self.addItemView.frame.origin.x, self.addItemView.frame.origin.y + 180, self.addItemView.frame.size.width, self.addItemView.frame.size.height);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -119,7 +120,7 @@
     
     imageSetFlag = 1;
     
-    self.imageHeight.constant = 60;
+    self.imageHeight.constant = Image_Height;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
