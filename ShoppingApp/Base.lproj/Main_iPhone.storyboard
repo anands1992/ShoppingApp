@@ -562,9 +562,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="Logout:" destination="4pS-ve-l3h" eventType="touchUpInside" id="s6Y-Ac-pSq"/>
+                                </connections>
                             </button>
                             <connections>
-                                <action selector="Logout:" destination="4pS-ve-l3h" id="6Ba-W0-4je"/>
+                                <action selector="Logout:" destination="4pS-ve-l3h" id="JIt-0j-UR2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -696,7 +699,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="Logout" destination="a5F-yn-tz3" id="7CO-Wu-6bT"/>
                         <outlet property="addOffer" destination="aBw-cJ-Obe" id="q9M-N9-ibx"/>
                         <outlet property="tableView" destination="U14-nn-iQ0" id="cwb-7E-n2N"/>
                         <segue destination="iki-3h-Yw8" kind="push" identifier="PushToDetailView" id="jvr-oP-3If"/>
@@ -1116,11 +1118,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yli-js-eDs">
-                                <rect key="frame" x="72" y="71" width="164" height="342"/>
+                                <rect key="frame" x="20" y="100" width="280" height="448"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-BR-GHz">
-                                        <rect key="frame" x="7" y="200" width="150" height="30"/>
+                                        <rect key="frame" x="59" y="171" width="150" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1129,7 +1131,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXf-1C-I8T">
-                                        <rect key="frame" x="7" y="245" width="150" height="30"/>
+                                        <rect key="frame" x="59" y="216" width="150" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1138,7 +1140,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JU-vc-5qJ">
-                                        <rect key="frame" x="59" y="304" width="46" height="30"/>
+                                        <rect key="frame" x="111" y="254" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Login">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1148,9 +1150,36 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sale.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="APf-8x-dsZ">
-                                        <rect key="frame" x="0.0" y="20" width="164" height="164"/>
+                                        <rect key="frame" x="52" y="-9" width="164" height="164"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCO-RE-juf">
+                                        <rect key="frame" x="52" y="283" width="164" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Forgot Password ??">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="forgotPassword:" destination="3rk-bj-9pn" eventType="touchUpInside" id="HVl-nx-oZD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOk-cA-qnG">
+                                        <rect key="frame" x="69" y="398" width="51" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0H-Eo-Ub2">
+                                        <rect key="frame" x="150" y="398" width="49" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Cancel:" destination="3rk-bj-9pn" eventType="touchUpInside" id="7yO-TU-m3c"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -1164,14 +1193,33 @@
                                     <segue destination="TRB-3S-sI2" kind="push" id="iTx-l5-3up"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6A-Eu-8Rd">
+                                <rect key="frame" x="74" y="421" width="172" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-QQ-YZk">
+                                <rect key="frame" x="74" y="463" width="172" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3rk-bj-9pn" id="5M1-eP-8xu"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="3wi-ZV-kOD"/>
                     <connections>
+                        <outlet property="Cancel" destination="P0H-Eo-Ub2" id="sEp-La-LlB"/>
                         <outlet property="Login" destination="5JU-vc-5qJ" id="eFf-5R-Vls"/>
                         <outlet property="Password" destination="VXf-1C-I8T" id="gKv-th-iJl"/>
+                        <outlet property="Submit" destination="nOk-cA-qnG" id="9QN-rq-1o7"/>
                         <outlet property="loginFrame" destination="yli-js-eDs" id="20d-2z-Mqe"/>
+                        <outlet property="securityQuestion" destination="v6A-Eu-8Rd" id="mOI-kE-Cfe"/>
+                        <outlet property="securityQuestionAnswer" destination="GhO-QQ-YZk" id="OsM-Mh-9CJ"/>
                         <outlet property="userName" destination="fMJ-BR-GHz" id="W5p-rh-bEa"/>
                     </connections>
                 </viewController>
@@ -1192,11 +1240,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ss-FQ-uGG">
-                                <rect key="frame" x="0.0" y="122" width="320" height="277"/>
+                                <rect key="frame" x="5" y="66" width="310" height="482"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KqV-hz-41G">
-                                        <rect key="frame" x="75" y="196" width="169" height="30"/>
+                                        <rect key="frame" x="70" y="152" width="169" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1205,7 +1253,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password " clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="diU-by-pUo">
-                                        <rect key="frame" x="75" y="143" width="169" height="30"/>
+                                        <rect key="frame" x="71" y="114" width="169" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1213,17 +1261,8 @@
                                             <outlet property="delegate" destination="TRB-3S-sI2" id="dzP-HV-YK9"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name " clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="noJ-Lv-5o1">
-                                        <rect key="frame" x="75" y="39" width="169" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="TRB-3S-sI2" id="Dgj-hz-A9U"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail@qburst.com" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WwM-ZS-xRH">
-                                        <rect key="frame" x="75" y="89" width="169" height="30"/>
+                                        <rect key="frame" x="70" y="76" width="169" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1232,7 +1271,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReB-pK-0VM">
-                                        <rect key="frame" x="129" y="247" width="61" height="30"/>
+                                        <rect key="frame" x="125" y="404" width="61" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Register">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1241,6 +1280,34 @@
                                             <action selector="Register:" destination="TRB-3S-sI2" eventType="touchUpInside" id="zUe-Tw-1SX"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name " clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="noJ-Lv-5o1">
+                                        <rect key="frame" x="68" y="39" width="169" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="TRB-3S-sI2" id="Dgj-hz-A9U"/>
+                                        </connections>
+                                    </textField>
+                                    <pickerView alpha="0.59999999999999964" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRJ-Px-8DF">
+                                        <rect key="frame" x="-22" y="190" width="348" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pND-n1-hmh">
+                                        <rect key="frame" x="58" y="360" width="194" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="TRB-3S-sI2" id="1jM-z7-ozv"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Your Security Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inU-AQ-d3F">
+                                        <rect key="frame" x="33" y="190" width="244" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -1255,6 +1322,8 @@
                         <outlet property="name" destination="noJ-Lv-5o1" id="oCJ-EN-SUd"/>
                         <outlet property="password" destination="diU-by-pUo" id="1Pa-O1-V3U"/>
                         <outlet property="registerFrame" destination="2ss-FQ-uGG" id="rQv-ty-hpF"/>
+                        <outlet property="securityQuestionAnswer" destination="pND-n1-hmh" id="dqp-Ry-UFR"/>
+                        <outlet property="securityQuestionPicker" destination="tRJ-Px-8DF" id="x7r-qP-jk5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Lg-pZ-dIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1311,6 +1380,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="MJz-ck-XdF"/>
-        <segue reference="Ggm-qp-Fm4"/>
+        <segue reference="SzA-7D-VYr"/>
     </inferredMetricsTieBreakers>
 </document>

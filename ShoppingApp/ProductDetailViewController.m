@@ -90,19 +90,40 @@
 }
 - (IBAction)addToCart:(id)sender
 {
-    PFObject *cart = [PFObject objectWithClassName:@"Cart"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Cart"];
     
-    cart[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+    [query whereKey:@"ProductName" equalTo:[self.productDetailViews valueForKey:@"ProductName"]];
     
-    cart[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
-    
-    cart[@"ProductPrice"] = [self.productDetailViews valueForKey:@"ProductPrice"];
-    
-    PFUser *user = [PFUser currentUser];
-    
-    cart[@"User"] = user.email;
-    
-    [cart saveInBackground];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        if (objects.count == 0)
+        {
+            PFObject *cart = [PFObject objectWithClassName:@"Cart"];
+            
+            cart[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+            
+            cart[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+            
+            cart[@"ProductPrice"] = [self.productDetailViews valueForKey:@"ProductPrice"];
+            
+            PFUser *user = [PFUser currentUser];
+            
+            cart[@"User"] = user.email;
+            
+            [cart saveInBackground];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  
+                                  initWithTitle:@"Error!"
+                                        message:@"This Item is Already Present in Cart"
+                                       delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
 }
 
 @end

@@ -18,4 +18,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *loginFrame;
 
+@property (weak, nonatomic) IBOutlet UILabel *securityQuestion;
+
+@property (weak, nonatomic) IBOutlet UITextField *securityQuestionAnswer;
+
+@property (weak, nonatomic) IBOutlet UIButton *Submit;
+
+@property (weak, nonatomic) IBOutlet UIButton *Cancel;
 @end

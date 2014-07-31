@@ -31,6 +31,10 @@
 {
     [super viewDidLoad];
     self.Password.secureTextEntry = YES;
+    self.securityQuestion.hidden = YES;
+    self.securityQuestionAnswer.hidden = YES;
+    self.Submit.hidden = YES;
+    self.Cancel.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,18 +88,60 @@
                                             }
                                             else
                                             {
-                                                UIAlertView *alert = [[UIAlertView alloc]
-                                                                      
-                                                                      initWithTitle:@"Error!"
-                                                                            message:@"Invalid Login Credentials"
-                                                                           delegate:nil
-                                                                  cancelButtonTitle:@"Dismiss"
-                                                                  otherButtonTitles:nil];
-                                                [alert show];
-
+                                                [self callAlert:@"Invalid Login Credentials"];
                                             }
                                         }];
 }
 
+- (IBAction)forgotPassword:(id)sender
+{
+    if ([self.userName.text isEqualToString:@""])
+    {
+        [self callAlert:@"Please Enter Username"];
+    }
+    else
+    {
+        self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"User"];
+        [query whereKey:@"username" equalTo:self.userName.text];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             self.securityQuestion.text = [objects valueForKey:@"SecurityQuestion"];
+             if ([self.securityQuestionAnswer.text isEqualToString:[objects valueForKey:@"SecurityQuestionAnswer"]])
+             {
+                 NSLog(@"hi");
+             }
+         }];
+        
+        [UIView animateWithDuration:1.5 animations:^{
+            self.securityQuestion.hidden = NO;
+            self.securityQuestionAnswer.hidden = NO;
+            self.Submit.hidden = NO;
+            self.Cancel.hidden = NO;
+        }];
+    }
+}
 
+- (IBAction)Cancel:(id)sender
+{
+    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+    
+    self.securityQuestion.hidden = YES;
+    self.securityQuestionAnswer.hidden = YES;
+    self.Submit.hidden = YES;
+}
+
+//Function for Calling Alerts
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
+}
 @end

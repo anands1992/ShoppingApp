@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *name;
 
@@ -22,4 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *registerFrame;
 
+@property (weak, nonatomic) IBOutlet UIPickerView *securityQuestionPicker;
+
+@property (weak, nonatomic) IBOutlet UITextField *securityQuestionAnswer;
 @end
