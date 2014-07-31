@@ -101,23 +101,26 @@
     }
     else
     {
-        self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
-        
-        self.Signup.hidden = YES;
-        
         PFQuery *query = [PFQuery queryWithClassName:@"User"];
         [query whereKey:@"username" equalTo:self.userName.text];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
-             self.securityQuestion.text = @"Hi";//[objects valueForKey:@"SecurityQuestion"];
+             if (objects.count == 0)
+             {
+                 [self callAlert:@"Such a User Does Not Exist !!"];
+             }
+             else
+             {
+                 self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+
+                 self.securityQuestion.text = @"Hi";
+                 self.Signup.hidden = YES;
+                 self.securityQuestion.hidden = NO;
+                 self.securityQuestionAnswer.hidden = NO;
+                 self.Submit.hidden = NO;
+                 self.Cancel.hidden = NO;
+             }
          }];
-        
-        [UIView animateWithDuration:1.5 animations:^{
-            self.securityQuestion.hidden = NO;
-            self.securityQuestionAnswer.hidden = NO;
-            self.Submit.hidden = NO;
-            self.Cancel.hidden = NO;
-        }];
     }
 }
 
