@@ -40,7 +40,7 @@
     self.securityQuestionPicker.delegate = self;
     self.securityQuestionPicker.dataSource = self;
     
-    
+    securityQuestion = @"Your favorite Colour ?";
 }
 
 - (void)didReceiveMemoryWarning

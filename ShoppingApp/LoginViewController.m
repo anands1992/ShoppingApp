@@ -101,19 +101,19 @@
     }
     else
     {
-        PFQuery *query = [PFQuery queryWithClassName:@"User"];
+        PFQuery *query = [PFUser query];
         [query whereKey:@"username" equalTo:self.userName.text];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
+        {
              if (objects.count == 0)
              {
                  [self callAlert:@"Such a User Does Not Exist !!"];
              }
              else
              {
-                 self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+                 self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
 
-                 self.securityQuestion.text = @"Hi";
+                 self.securityQuestion.text = [[objects objectAtIndex:0] valueForKey:@"SecurityQuestion"];
                  self.Signup.hidden = YES;
                  self.securityQuestion.hidden = NO;
                  self.securityQuestionAnswer.hidden = NO;
@@ -124,9 +124,26 @@
     }
 }
 
+- (IBAction)Submit:(id)sender
+{
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:self.userName.text];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if ([self.securityQuestionAnswer.text isEqualToString:[[objects objectAtIndex:0] valueForKey:@"SecurityQuestionAnswer"]])
+         {
+             [PFUser requestPasswordResetForEmailInBackground:self.userName.text];
+         }
+         else
+         {
+             [self callAlert:@"Sorry, the answer you entered is wrong !!"];
+         }
+     }];
+}
+
 - (IBAction)Cancel:(id)sender
 {
-    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 240, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
     
     self.securityQuestion.hidden = YES;
     self.securityQuestionAnswer.hidden = YES;
@@ -135,16 +152,18 @@
     self.Signup.hidden = NO;
 }
 
+
 //Function for Calling Alerts
 - (void) callAlert:(NSString*)alertMessage
 {
     UIAlertView *alert = [[UIAlertView alloc]
                           
                           initWithTitle:@"Error"
-                          message: alertMessage
-                          delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
+                                message: alertMessage
+                               delegate:nil
+                      cancelButtonTitle:@"Dismiss"
+                      otherButtonTitles:nil];
     [alert show];
 }
+
 @end
