@@ -15,6 +15,7 @@
 #define PUSH_TO_PURCHASE_SCREEN @"PushToBuy"
 #define PUSH_TO_LOGIN_SCREEEN_FROM_CATEGORIES_TAB @"CategoryLoginModal"
 #define PUSH_TO_LOGIN_SCREEEN_FROM_OFFERS_TAB @"OfferLoginModal"
+#define PUSH_TO_LOGIN_SCREEEN_FROM_CART_TAB @"CartLoginModal"
 #define ADD_PRODUCT @"AddProduct"
 #define ADD_CATEGORY @"AddCategory"
 #define ADD_OFFER @"AddOffer"

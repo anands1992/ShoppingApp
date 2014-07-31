@@ -38,6 +38,9 @@
 		2295626F19658BA100BFE3CC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2295626419658BA100BFE3CC /* CoreText.framework */; };
 		2295627019658BA100BFE3CC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2295626519658BA100BFE3CC /* AssetsLibrary.framework */; };
 		2295627119658BA100BFE3CC /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2295626619658BA100BFE3CC /* AddressBook.framework */; };
+		22A7B0481988F67E002D1C01 /* shopping_cart_empty-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A7B0471988F67E002D1C01 /* shopping_cart_empty-32.png */; };
+		22A7B04F1988F8A8002D1C01 /* ShoppingCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A7B04E1988F8A8002D1C01 /* ShoppingCartTableViewCell.m */; };
+		22A7B05219891038002D1C01 /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A7B05119891038002D1C01 /* ShoppingCartViewController.m */; };
 		22B39967197509BF00578609 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B39966197509BF00578609 /* AddItemViewController.m */; };
 		22B3996A197522A300578609 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B39969197522A300578609 /* LoginViewController.m */; };
 		22D59FF1197E12F8004E7C6C /* AddCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D59FF0197E12F8004E7C6C /* AddCategoryViewController.m */; };
@@ -190,6 +193,11 @@
 		2295626719658BA100BFE3CC /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
 		2295626819658BA100BFE3CC /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GooglePlus.bundle"; sourceTree = "<group>"; };
 		2295626919658BA100BFE3CC /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GooglePlus.framework"; sourceTree = "<group>"; };
+		22A7B0471988F67E002D1C01 /* shopping_cart_empty-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_cart_empty-32.png"; sourceTree = "<group>"; };
+		22A7B04D1988F8A8002D1C01 /* ShoppingCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCartTableViewCell.h; path = ../ShoppingCartTableViewCell.h; sourceTree = "<group>"; };
+		22A7B04E1988F8A8002D1C01 /* ShoppingCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCartTableViewCell.m; path = ../ShoppingCartTableViewCell.m; sourceTree = "<group>"; };
+		22A7B05019891038002D1C01 /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
+		22A7B05119891038002D1C01 /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
 		22B39965197509BF00578609 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
 		22B39966197509BF00578609 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
 		22B39968197522A300578609 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -587,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				22D722EE1966CBBE008EAE83 /* ViewControllers */,
+				22A7B04C1988F6D8002D1C01 /* Shopping Cart */,
 				22D722F01966CC10008EAE83 /* CategoryTab */,
 				22D722EF1966CBF9008EAE83 /* OfferTab */,
 				22D722F11966CC75008EAE83 /* Others */,
@@ -625,9 +634,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		22A7B04C1988F6D8002D1C01 /* Shopping Cart */ = {
+			isa = PBXGroup;
+			children = (
+				22A7B04D1988F8A8002D1C01 /* ShoppingCartTableViewCell.h */,
+				22A7B04E1988F8A8002D1C01 /* ShoppingCartTableViewCell.m */,
+				22A7B05019891038002D1C01 /* ShoppingCartViewController.h */,
+				22A7B05119891038002D1C01 /* ShoppingCartViewController.m */,
+			);
+			name = "Shopping Cart";
+			sourceTree = "<group>";
+		};
 		22D722DA196659AB008EAE83 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				22A7B0471988F67E002D1C01 /* shopping_cart_empty-32.png */,
 				223CB7DF19779E0300812FB0 /* RolexLogo.jpeg */,
 				22EEC9D9197CCA5700A2AFC7 /* shopping_bag-32.png */,
 				22EEC9DB197CCA9600A2AFC7 /* sale-32.png */,
@@ -1493,6 +1514,7 @@
 				22F85F0C196D02BB008B24E6 /* Images.xcassets in Resources */,
 				223CB7E019779E0300812FB0 /* RolexLogo.jpeg in Resources */,
 				22956229196589C600BFE3CC /* InfoPlist.strings in Resources */,
+				22A7B0481988F67E002D1C01 /* shopping_cart_empty-32.png in Resources */,
 				22295A45196BC9AF006EEB1C /* Main_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1518,10 +1540,12 @@
 				22B3996A197522A300578609 /* LoginViewController.m in Sources */,
 				2295622B196589C600BFE3CC /* main.m in Sources */,
 				22956238196589C600BFE3CC /* CategoryViewController.m in Sources */,
+				22A7B04F1988F8A8002D1C01 /* ShoppingCartTableViewCell.m in Sources */,
 				22D722EC1966675E008EAE83 /* OfferDetailViewController.m in Sources */,
 				22D59FF1197E12F8004E7C6C /* AddCategoryViewController.m in Sources */,
 				22D722E919666750008EAE83 /* ProductDetailViewController.m in Sources */,
 				22E3D581197000B600B21281 /* RegisterViewController.m in Sources */,
+				22A7B05219891038002D1C01 /* ShoppingCartViewController.m in Sources */,
 				22D5E9B81974D9E400958A23 /* CategoryTableViewCell.m in Sources */,
 				2295625B19658A8400BFE3CC /* ProductsTableViewCell.m in Sources */,
 				2295622F196589C600BFE3CC /* ShoppingAppDelegate.m in Sources */,

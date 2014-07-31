@@ -7,6 +7,8 @@
 //
 
 #import "ProductDetailViewController.h"
+#import "ShoppingCartViewController.h"
+#import "ShoppingAppDelegate.h"
 #import <Parse/Parse.h>
 #import "Constants.h"
 
@@ -79,12 +81,25 @@
              [alert show];
          }
      }];
-    
-    }
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+- (IBAction)addToCart:(id)sender
+{
+    PFObject *cart = [PFObject objectWithClassName:@"Cart"];
+    
+    cart[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+    
+    cart[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+    
+    PFUser *user = [PFUser currentUser];
+    
+    cart[@"User"] = user.email;
+    
+    [cart saveInBackground];
 }
 
 @end

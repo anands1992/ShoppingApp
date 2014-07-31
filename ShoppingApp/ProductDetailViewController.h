@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *Purchase;
 
-@property (weak,nonatomic) NSDictionary *productDetailViews;
+@property (strong,nonatomic) NSDictionary *productDetailViews;
 
 @property (strong,nonatomic) NSString *productKey;
 
