@@ -119,7 +119,7 @@
 {
     // Return NO if you do not want the specified item to be editable.
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:is_Admin])
+    if ([user[@"UserType" ] isEqualToString:is_Admin])
     {
         return YES;
     }

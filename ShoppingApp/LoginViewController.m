@@ -142,6 +142,14 @@
                                cancelButtonTitle:@"Dismiss"
                                otherButtonTitles:nil];
              [alert show];
+             
+             self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+             
+             self.securityQuestion.hidden = YES;
+             self.securityQuestionAnswer.hidden = YES;
+             self.Submit.hidden = YES;
+             self.Cancel.hidden = YES;
+             self.Signup.hidden = NO;
          }
          else
          {

@@ -122,15 +122,28 @@
 {
     PFObject *wishlist = [PFObject objectWithClassName:@"Wishlist"];
     
-    wishlist[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+    PFQuery *wishlistquery = [PFQuery queryWithClassName:@"Wishlist"];
     
-    wishlist[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+    [wishlistquery whereKey:@"ProductName" equalTo:[self.productDetailViews valueForKey:@"ProductName"]];
     
-    PFUser *user = [PFUser currentUser];
-    
-    wishlist[@"User"] = user.email;
-    
-    [wishlist saveInBackground];
+    [wishlistquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects.count == 0)
+        {
+            wishlist[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+            
+            wishlist[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+            
+            PFUser *user = [PFUser currentUser];
+            
+            wishlist[@"User"] = user.email;
+            
+            [wishlist saveInBackground];
+        }
+        else
+        {
+            [self callAlert:@"This Item Already Exists in the Wishlist"];
+        }
+    }];
 }
 
 //Function for Calling alerts
