@@ -88,34 +88,36 @@
          }
      }];
     
+    cell.delegate = self;
+    
     return cell;
 }
 
-//Checks whether the cell has to be editable or not
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        PFQuery *query = [PFQuery queryWithClassName:@"Wishlist"];
-        
-        [query whereKey:@"ProductName" equalTo:[[wishlist objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
-        
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-         {
-             [wishlist removeObjectAtIndex:indexPath.row];
-             
-             [object deleteInBackground];
-             
-             [self.wishlistTable reloadData];
-         }];
-    }
-}
+////Checks whether the cell has to be editable or not
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Return NO if you do not want the specified item to be editable.
+//    return YES;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete)
+//    {
+//        PFQuery *query = [PFQuery queryWithClassName:@"Wishlist"];
+//        
+//        [query whereKey:@"ProductName" equalTo:[[wishlist objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
+//        
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+//         {
+//             [wishlist removeObjectAtIndex:indexPath.row];
+//             
+//             [object deleteInBackground];
+//             
+//             [self.wishlistTable reloadData];
+//         }];
+//    }
+//}
 - (IBAction)Logout:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
@@ -125,6 +127,17 @@
     [PFUser logOut];
     
     [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_MYACCOUNT_TAB sender:self];
+}
+
+#pragma mark - SwipeableCellDelegate
+- (void)deleteButtonAction:(NSString *)itemText
+{
+    NSLog(@"In the delegate, Clicked button two for %@", itemText);
+}
+
+- (void)buttonTwoActionForItemText:(NSString *)itemText
+{
+    NSLog(@"In the delegate, Clicked button two for %@", itemText);
 }
 
 @end

@@ -31,4 +31,20 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)buttonClicked:(id)sender {
+    if (sender == self.deleteButton)
+    {
+        [self.delegate deleteButtonAction];
+    }
+    else if (sender == self.addToCartButton)
+    {
+        [self.delegate addToCartButtonAction];
+    }
+    else
+    {
+        NSLog(@"Clicked unknown button!");
+    }
+}
+
+
 @end

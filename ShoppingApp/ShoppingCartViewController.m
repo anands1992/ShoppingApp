@@ -147,16 +147,5 @@
          }];
     }
 }
-- (IBAction)Logout:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [PFUser logOut];
-    
-    [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_CART_TAB sender:self];
-}
-
 
 @end

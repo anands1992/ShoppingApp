@@ -153,15 +153,4 @@
     }
 }
 
-#pragma mark - IBAction
-
-- (IBAction)Logout:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [[GPPSignIn sharedInstance] signOut];
-    [PFUser logOut];
-    [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_OFFERS_TAB sender:self];
-}
-
 @end
