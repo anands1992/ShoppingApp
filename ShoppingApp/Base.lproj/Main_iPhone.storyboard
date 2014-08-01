@@ -377,7 +377,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My WishList" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqS-hp-KK6">
-                                <rect key="frame" x="111" y="70" width="99" height="21"/>
+                                <rect key="frame" x="111" y="85" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="9vF-MH-c3M"/>
@@ -394,14 +394,32 @@
                             <constraint firstItem="Tek-as-J8h" firstAttribute="centerX" secondItem="cqS-hp-KK6" secondAttribute="centerX" constant="-0.5" id="kU0-iU-Glj"/>
                             <constraint firstAttribute="trailing" secondItem="Tek-as-J8h" secondAttribute="trailing" constant="8" id="oS7-kT-Ted"/>
                             <constraint firstItem="HGK-ft-el3" firstAttribute="top" secondItem="Tek-as-J8h" secondAttribute="bottom" constant="15" id="p3X-ol-5YB"/>
-                            <constraint firstItem="Tek-as-J8h" firstAttribute="top" secondItem="cqS-hp-KK6" secondAttribute="bottom" constant="2" id="wfX-S0-xmZ"/>
+                            <constraint firstItem="Tek-as-J8h" firstAttribute="top" secondItem="cqS-hp-KK6" secondAttribute="bottom" constant="-13" id="wfX-S0-xmZ"/>
                             <constraint firstItem="Tek-as-J8h" firstAttribute="leading" secondItem="TMa-Q5-aKE" secondAttribute="leading" constant="8" id="zrj-9h-5Cx"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Account" image="Contact.png" id="jbs-qc-6Sw"/>
-                    <navigationItem key="navigationItem" id="iGP-zR-dyr"/>
+                    <navigationItem key="navigationItem" id="iGP-zR-dyr">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="b8E-hT-8cn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9SQ-jW-Fdc">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Logout:" destination="uIs-Q0-vKW" eventType="touchUpInside" id="JGx-Jw-uos"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="Logout:" destination="uIs-Q0-vKW" id="B84-kj-g4h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="wishlistTable" destination="Tek-as-J8h" id="5MZ-dn-fJI"/>
+                        <segue destination="in7-R6-Wc0" kind="modal" identifier="MyAccountLoginModal" id="ew1-tR-gxl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QfB-rb-DSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1509,7 +1527,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EFg-73-SxF"/>
         <segue reference="MJz-ck-XdF"/>
+        <segue reference="ew1-tR-gxl"/>
     </inferredMetricsTieBreakers>
 </document>

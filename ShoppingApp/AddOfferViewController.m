@@ -13,13 +13,9 @@
 
 @interface AddOfferViewController ()
 {
-    NSArray *categoryTable;
+    NSArray *categoryTable,*productTable;
     
-    NSArray *productTable;
-    
-    NSString *categoryName;
-    
-    NSString *productName;
+    NSString *categoryName,*productName;
     
     PFFile *offerImageData;
 }
@@ -259,7 +255,7 @@
         }];
     }
 }
-
+// This brings up the Category Picker
 - (IBAction)categoryPicker:(id)sender
 {
     
@@ -274,7 +270,7 @@
     
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
 }
-
+//This Brings up the productPicker
 - (IBAction)productPicker:(id)sender
 {
     self.categoryPickerHeightFromTop.constant = self.view.frame.size.height;

@@ -9,6 +9,7 @@
 #import "MyAccountViewController.h"
 #import "WishListTableViewCell.h"
 #import <Parse/Parse.h>
+#import "Constants.h"
 
 @interface MyAccountViewController ()
 {
@@ -114,6 +115,16 @@
              [self.wishlistTable reloadData];
          }];
     }
+}
+- (IBAction)Logout:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [PFUser logOut];
+    
+    [self performSegueWithIdentifier:PUSH_TO_LOGIN_SCREEEN_FROM_MYACCOUNT_TAB sender:self];
 }
 
 @end
