@@ -142,7 +142,7 @@
              [Cart removeObjectAtIndex:indexPath.row];
              
              [object deleteInBackground];
-             
+             self.numberOfItems.text = [NSString stringWithFormat:(@"%d Items in cart"),Cart.count];
              [self.shoppingCart reloadData];
          }];
     }
