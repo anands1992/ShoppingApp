@@ -45,7 +45,9 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          Cart = [[NSMutableArray alloc]initWithArray:objects];
+   
          self.numberOfItems.text = [NSString stringWithFormat:(@"%d Items in cart"),Cart.count];
+         
         [self.shoppingCart reloadData];
      }];
 }
@@ -108,8 +110,9 @@
         {
             totalAmountCell = [[TotalAmountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         }
-        NSLog(@"%f",totalprice);
+        
         totalAmountCell.totalAmount.text = [NSString stringWithFormat:@"%f",totalprice];
+        
         return totalAmountCell;
     }
     return nil;

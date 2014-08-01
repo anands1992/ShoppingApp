@@ -133,6 +133,15 @@
          if ([self.securityQuestionAnswer.text isEqualToString:[[objects objectAtIndex:0] valueForKey:@"SecurityQuestionAnswer"]])
          {
              [PFUser requestPasswordResetForEmailInBackground:self.userName.text];
+             
+             UIAlertView *alert = [[UIAlertView alloc]
+                                   
+                                   initWithTitle:@"Notification"
+                                         message: @"An E-Mail Has been sent to your registered address, you can reset your password from the link given in it"
+                                        delegate:nil
+                               cancelButtonTitle:@"Dismiss"
+                               otherButtonTitles:nil];
+             [alert show];
          }
          else
          {
@@ -151,7 +160,6 @@
     self.Cancel.hidden = YES;
     self.Signup.hidden = NO;
 }
-
 
 //Function for Calling Alerts
 - (void) callAlert:(NSString*)alertMessage

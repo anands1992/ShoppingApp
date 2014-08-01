@@ -58,20 +58,26 @@
         [self.password becomeFirstResponder];
     else if(textField == self.password)
         [self.confirmPassword becomeFirstResponder];
-    else
+    else if(textField == self.confirmPassword)
+        [self.securityQuestionAnswer becomeFirstResponder];
         [self Register:nil];
     return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y - 40, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
+    if (textField == self.securityQuestionAnswer)
+        self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y - 200, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
+    else
+        self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y - 40, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y + 40, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
-}
+    if (textField == self.securityQuestionAnswer)
+        self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y + 200, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);
+    else
+        self.registerFrame.frame = CGRectMake(self.registerFrame.frame.origin.x, self.registerFrame.frame.origin.y + 40, self.registerFrame.frame.size.width, self.registerFrame.frame.size.height);}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

@@ -50,7 +50,7 @@
     [super viewWillAppear:YES];
     
     PFUser *user = [PFUser currentUser];
-    if ([user[@"UserID" ] isEqualToString:is_User])
+    if ([user[@"UserType" ] isEqualToString:is_User])
         self.navigationItem.rightBarButtonItem=nil;
 
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];

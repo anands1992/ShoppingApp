@@ -43,7 +43,7 @@
 {
     PFUser *user = [PFUser currentUser];
     
-    if ([user[@"UserID"] isEqualToString:is_User])
+    if ([user[@"UserType"] isEqualToString:is_User])
         self.navigationItem.leftBarButtonItem=nil;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Offers"];

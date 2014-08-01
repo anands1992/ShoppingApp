@@ -182,9 +182,9 @@
                  
                  products[@"ProductType"] = self.itemType;
                  
-                 NSString *emailRegex = @"[0-9]";
-                 NSPredicate *emailTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-                 BOOL myStringMatchesRegEx=[emailTest evaluateWithObject:self.itemPrice.text];
+                 NSString *itemPriceRegex = @"[0-999999999999]";
+                 NSPredicate *itemPriceTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", itemPriceRegex];
+                 BOOL myStringMatchesRegEx=[itemPriceTest evaluateWithObject:self.itemPrice.text];
 
                  if (myStringMatchesRegEx)
                  {
@@ -224,10 +224,12 @@
                               [self callAlert:@"There was an error in adding the new item, please try again"];
                           }
                       }];
-                     
                  }
                  else
+                 {
                      [self callAlert:@"Please Input a number for The Product Price"];
+                     self.addProduct.enabled = YES;
+                 }
              }
              else
              {

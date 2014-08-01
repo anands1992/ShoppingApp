@@ -13,7 +13,9 @@
 #import "Constants.h"
 
 @interface ProductDetailViewController ()
-
+{
+    NSMutableArray *wishlistArray;
+}
 @end
 
 @implementation ProductDetailViewController
@@ -33,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    wishlistArray = [[NSMutableArray alloc]init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     
@@ -72,14 +76,7 @@
              // Log details of the failure
              NSLog(@"Error: %@ %@", error, [error userInfo]);
              
-             UIAlertView *alert = [[UIAlertView alloc]
-                                   
-                                   initWithTitle:@"Error!"
-                                         message:@"There was an error in retrieving the data, please try again"
-                                        delegate:nil
-                               cancelButtonTitle:@"Dismiss"
-                               otherButtonTitles:nil];
-             [alert show];
+             [self callAlert:@"There was an error in retrieving the data, please try again"];
          }
      }];
 }
@@ -90,9 +87,13 @@
 }
 - (IBAction)addToCart:(id)sender
 {
+    PFUser *user = [PFUser currentUser];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Cart"];
     
     [query whereKey:@"ProductName" equalTo:[self.productDetailViews valueForKey:@"ProductName"]];
+    
+    [query whereKey:@"User" equalTo:user.username];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
@@ -106,24 +107,43 @@
             
             cart[@"ProductPrice"] = [self.productDetailViews valueForKey:@"ProductPrice"];
             
-            PFUser *user = [PFUser currentUser];
-            
-            cart[@"User"] = user.email;
+            cart[@"User"] = user.username;
             
             [cart saveInBackground];
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  
-                                  initWithTitle:@"Error!"
-                                        message:@"This Item is Already Present in Cart"
-                                       delegate:nil
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-            [alert show];
+            [self callAlert:@"This Item is Already Present in Cart"];
         }
     }];
+}
+
+- (IBAction)Wishlist:(id)sender
+{
+    PFObject *wishlist = [PFObject objectWithClassName:@"Wishlist"];
+    
+    wishlist[@"ProductName"] = [self.productDetailViews valueForKey:@"ProductName"];
+    
+    wishlist[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
+    
+    PFUser *user = [PFUser currentUser];
+    
+    wishlist[@"User"] = user.email;
+    
+    [wishlist saveInBackground];
+}
+
+//Function for Calling alerts
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
