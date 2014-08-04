@@ -10,7 +10,6 @@
 #import "OffersTableViewCell.h"
 #import "OfferDetailViewController.h"
 #import "AddOfferViewController.h"
-#import <GooglePlus/GooglePlus.h>
 #import <Parse/Parse.h>
 #import "Constants.h"
 

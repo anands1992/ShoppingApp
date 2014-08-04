@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1792F34F198FEA9D00C47451 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1792F34E198FEA9D00C47451 /* Parse.framework */; };
+		1792F351198FEAA900C47451 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1792F350198FEAA900C47451 /* FacebookSDK.framework */; };
 		2200436D198B487300DFB677 /* ShoppingCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200436A198B487200DFB677 /* ShoppingCartTableViewCell.m */; };
 		2200436E198B487300DFB677 /* TotalAmountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200436C198B487200DFB677 /* TotalAmountTableViewCell.m */; };
 		22004374198B4FD400DFB677 /* heart_icon_deselected_144186.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22004373198B4FD400DFB677 /* heart_icon_deselected_144186.jpg */; };
 		22004376198B50E800DFB677 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 22004375198B50E800DFB677 /* Contact.png */; };
-		22295A1A196BC08A006EEB1C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A19196BC08A006EEB1C /* FacebookSDK.framework */; };
-		22295A3B196BC5E4006EEB1C /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A1B196BC099006EEB1C /* GoogleOpenSource.framework */; };
-		22295A40196BC7CC006EEB1C /* GooglePlus.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A1C196BC099006EEB1C /* GooglePlus.bundle */; };
-		22295A41196BC7DC006EEB1C /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A1D196BC099006EEB1C /* GooglePlus.framework */; };
-		22295A42196BC8C8006EEB1C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22295A21196BC0A7006EEB1C /* Parse.framework */; };
 		22295A45196BC9AF006EEB1C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22295A43196BC9AF006EEB1C /* Main_iPhone.storyboard */; };
 		2252F4C8198B938F007EDE6E /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2252F4C5198B938F007EDE6E /* MyAccountViewController.m */; };
 		2252F4C9198B938F007EDE6E /* WishListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2252F4C7198B938F007EDE6E /* WishListTableViewCell.m */; };
@@ -156,17 +153,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1792F34E198FEA9D00C47451 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		1792F350198FEAA900C47451 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		22004369198B487200DFB677 /* ShoppingCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartTableViewCell.h; sourceTree = "<group>"; };
 		2200436A198B487200DFB677 /* ShoppingCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartTableViewCell.m; sourceTree = "<group>"; };
 		2200436B198B487200DFB677 /* TotalAmountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalAmountTableViewCell.h; sourceTree = "<group>"; };
 		2200436C198B487200DFB677 /* TotalAmountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalAmountTableViewCell.m; sourceTree = "<group>"; };
 		22004373198B4FD400DFB677 /* heart_icon_deselected_144186.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = heart_icon_deselected_144186.jpg; sourceTree = "<group>"; };
 		22004375198B50E800DFB677 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
-		22295A19196BC08A006EEB1C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ShoppingApp/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		22295A1B196BC099006EEB1C /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "ShoppingApp/google-plus-ios-sdk-1.5.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
-		22295A1C196BC099006EEB1C /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "ShoppingApp/google-plus-ios-sdk-1.5.1/GooglePlus.bundle"; sourceTree = "<group>"; };
-		22295A1D196BC099006EEB1C /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "ShoppingApp/google-plus-ios-sdk-1.5.1/GooglePlus.framework"; sourceTree = "<group>"; };
-		22295A21196BC0A7006EEB1C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ShoppingApp/Parse.framework; sourceTree = "<group>"; };
 		22295A44196BC9AF006EEB1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		2252F4C4198B938F007EDE6E /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
 		2252F4C5198B938F007EDE6E /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
@@ -204,9 +198,6 @@
 		2295626419658BA100BFE3CC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2295626519658BA100BFE3CC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		2295626619658BA100BFE3CC /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		2295626719658BA100BFE3CC /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
-		2295626819658BA100BFE3CC /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GooglePlus.bundle"; sourceTree = "<group>"; };
-		2295626919658BA100BFE3CC /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../Documents/ProductApp/google-plus-ios-sdk-1.5.1/GooglePlus.framework"; sourceTree = "<group>"; };
 		22A7B0471988F67E002D1C01 /* shopping_cart_empty-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_cart_empty-32.png"; sourceTree = "<group>"; };
 		22A7B05019891038002D1C01 /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		22A7B05119891038002D1C01 /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
@@ -509,11 +500,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22295A42196BC8C8006EEB1C /* Parse.framework in Frameworks */,
-				22295A41196BC7DC006EEB1C /* GooglePlus.framework in Frameworks */,
-				22295A40196BC7CC006EEB1C /* GooglePlus.bundle in Frameworks */,
-				22295A3B196BC5E4006EEB1C /* GoogleOpenSource.framework in Frameworks */,
-				22295A1A196BC08A006EEB1C /* FacebookSDK.framework in Frameworks */,
+				1792F351198FEAA900C47451 /* FacebookSDK.framework in Frameworks */,
+				1792F34F198FEA9D00C47451 /* Parse.framework in Frameworks */,
 				22E177D0196A4F22008CFD62 /* Social.framework in Frameworks */,
 				22E177CE196A4F18008CFD62 /* Twitter.framework in Frameworks */,
 				22E177CC196A4E95008CFD62 /* StoreKit.framework in Frameworks */,
@@ -582,11 +570,8 @@
 		2295621D196589C600BFE3CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22295A21196BC0A7006EEB1C /* Parse.framework */,
-				22295A1B196BC099006EEB1C /* GoogleOpenSource.framework */,
-				22295A1C196BC099006EEB1C /* GooglePlus.bundle */,
-				22295A1D196BC099006EEB1C /* GooglePlus.framework */,
-				22295A19196BC08A006EEB1C /* FacebookSDK.framework */,
+				1792F350198FEAA900C47451 /* FacebookSDK.framework */,
+				1792F34E198FEA9D00C47451 /* Parse.framework */,
 				22E177CF196A4F22008CFD62 /* Social.framework */,
 				22E177CD196A4F18008CFD62 /* Twitter.framework */,
 				22E177CB196A4E95008CFD62 /* StoreKit.framework */,
@@ -604,9 +589,6 @@
 				2295626419658BA100BFE3CC /* CoreText.framework */,
 				2295626519658BA100BFE3CC /* AssetsLibrary.framework */,
 				2295626619658BA100BFE3CC /* AddressBook.framework */,
-				2295626719658BA100BFE3CC /* GoogleOpenSource.framework */,
-				2295626819658BA100BFE3CC /* GooglePlus.bundle */,
-				2295626919658BA100BFE3CC /* GooglePlus.framework */,
 				2295621E196589C600BFE3CC /* Foundation.framework */,
 				22956220196589C600BFE3CC /* CoreGraphics.framework */,
 				22956222196589C600BFE3CC /* UIKit.framework */,
@@ -1934,6 +1916,8 @@
 					"$(PROJECT_DIR)/ShoppingApp/FacebookSDK/**",
 					"$(PROJECT_DIR)/ShoppingApp/google-plus-ios-sdk-1.5.1/**",
 					"$(PROJECT_DIR)/ShoppingApp",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShoppingApp/ShoppingApp-Prefix.pch";
@@ -1956,6 +1940,8 @@
 					"$(PROJECT_DIR)/ShoppingApp/FacebookSDK/**",
 					"$(PROJECT_DIR)/ShoppingApp/google-plus-ios-sdk-1.5.1/**",
 					"$(PROJECT_DIR)/ShoppingApp",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShoppingApp/ShoppingApp-Prefix.pch";
