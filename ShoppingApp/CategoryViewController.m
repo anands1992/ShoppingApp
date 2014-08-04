@@ -1,4 +1,4 @@
-//
+
 //  CategoryViewController.m
 //  ShoppingApp
 //
@@ -55,7 +55,7 @@
     
     if ([user[@"UserType"] isEqualToString:is_User])
         
-        self.navigationItem.leftBarButtonItem=nil;
+        self.navigationItem.rightBarButtonItem=nil;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Categories"];
     
@@ -137,14 +137,13 @@
         
         [categoryQuery whereKey:@"CategoryName" equalTo:[[categoryTable objectAtIndex:indexPath.row]valueForKey:@"CategoryName"]];
         
-        [categoryQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-         {
-             [categoryTable removeObjectAtIndex:indexPath.row];
-             
-             [object deleteInBackground];
-             
-             [self.tableView reloadData];
-         }];
+        [categoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [categoryTable removeObjectAtIndex:indexPath.row];
+            
+            [[objects objectAtIndex:0] deleteInBackground];
+            
+            [self.tableView reloadData];
+        }];
         
         PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
         

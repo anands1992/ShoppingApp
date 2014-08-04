@@ -132,18 +132,18 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+        PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
         
-        [query whereKey:@"ProductName" equalTo:[[productArray objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
+        [productQuery whereKey:@"ProductName" equalTo:[[productArray objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
         
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-         {
-             [productArray removeObjectAtIndex:indexPath.row];
-             
-             [object deleteInBackground];
-             
-             [self.tableView reloadData];
-         }];
+        [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            [productArray removeObjectAtIndex:indexPath.row];
+            
+            [[objects objectAtIndex:0] deleteInBackground];
+            
+            [self.tableView reloadData];
+        }];
     }
 }
 

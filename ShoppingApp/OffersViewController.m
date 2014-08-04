@@ -126,14 +126,14 @@
         
         [query whereKey:@"ProductName" equalTo:[[offerTable objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
         
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-         {
-             [offerTable removeObjectAtIndex:indexPath.row];
-             
-             [object deleteInBackground];
-             
-             [self.tableView reloadData];
-         }];
+       [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+           [offerTable removeObjectAtIndex:indexPath.row];
+           
+           [[objects objectAtIndex:0] deleteInBackground];
+           
+           [self.tableView reloadData];
+       }];
     }
 }
 

@@ -2,7 +2,7 @@
 //  MyAccountViewController.m
 //  ShoppingApp
 //
-//  Created by qbadmin on 01/08/14.
+//  Created by qburst on 01/08/14.
 //  Copyright (c) 2014 Anand. All rights reserved.
 //
 
@@ -77,7 +77,7 @@
     }
     
     cell.productName.text = [[wishlist objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
-
+    
     PFFile *imageFile = [[wishlist objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
@@ -88,36 +88,15 @@
          }
      }];
     
+    cell.deleteButton.tag = indexPath.row;
+    
+    cell.addToCartButton.tag = indexPath.row;
+    
     cell.delegate = self;
     
     return cell;
 }
 
-////Checks whether the cell has to be editable or not
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-//
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete)
-//    {
-//        PFQuery *query = [PFQuery queryWithClassName:@"Wishlist"];
-//        
-//        [query whereKey:@"ProductName" equalTo:[[wishlist objectAtIndex:indexPath.row]valueForKey:@"ProductName"]];
-//        
-//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-//         {
-//             [wishlist removeObjectAtIndex:indexPath.row];
-//             
-//             [object deleteInBackground];
-//             
-//             [self.wishlistTable reloadData];
-//         }];
-//    }
-//}
 - (IBAction)Logout:(id)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGGED_IN_STATUS];
@@ -130,14 +109,65 @@
 }
 
 #pragma mark - SwipeableCellDelegate
-- (void)deleteButtonAction:(NSString *)itemText
+- (void)deleteButtonAction:(NSInteger)buttonTag
 {
-    NSLog(@"In the delegate, Clicked button two for %@", itemText);
+    PFQuery *query = [PFQuery queryWithClassName:@"Wishlist"];
+    
+            [query whereKey:@"ProductName" equalTo:[[wishlist objectAtIndex:buttonTag]valueForKey:@"ProductName"]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        [wishlist removeObjectAtIndex:buttonTag];
+        
+        [[objects objectAtIndex:0] deleteInBackground];
+        
+        [self.wishlistTable reloadData];
+    }];
 }
 
-- (void)buttonTwoActionForItemText:(NSString *)itemText
+- (void)addToCartButtonAction:(NSInteger)buttonTag
 {
-    NSLog(@"In the delegate, Clicked button two for %@", itemText);
+    PFObject *cart = [PFObject objectWithClassName:@"Cart"];
+    
+    PFQuery *cartQuery = [PFQuery queryWithClassName:@"Cart"];
+    
+    [cartQuery whereKey:@"ProductName" equalTo:[[wishlist objectAtIndex:buttonTag] valueForKey:@"ProductName"]];
+    
+    [cartQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+        if (objects.count == 0)
+        {
+            cart[@"ProductName"] = [[wishlist objectAtIndex:buttonTag]  valueForKey:@"ProductName"];
+    
+            cart[@"ProductImage"] = [[wishlist objectAtIndex:buttonTag]  valueForKey:@"ProductImage"];
+            
+            cart[@"ProductPrice"] = [[wishlist objectAtIndex:buttonTag]  valueForKey:@"ProductPrice"];
+    
+            PFUser *user = [PFUser currentUser];
+    
+            cart[@"User"] = user.email;
+    
+            [cart saveInBackground];
+        }
+        else
+        {
+            [self callAlert:@"This Item Already Exists in the Cart"];
+        }
+    }];
+
+}
+
+#pragma mark - Alert Messages
+- (void) callAlert:(NSString*)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"Error"
+                          message: alertMessage
+                          delegate:nil
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

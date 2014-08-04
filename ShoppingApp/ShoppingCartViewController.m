@@ -71,51 +71,52 @@
 {
     if(indexPath.row < Cart.count)
     {
-    static NSString *cellIdentifier = @"cartItem";
-    ShoppingCartTableViewCell *cell = (ShoppingCartTableViewCell*)
-    [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell == nil)
-    {
-        cell = [[ShoppingCartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+        static NSString *cellIdentifier = @"cartItem";
+        ShoppingCartTableViewCell *cell = (ShoppingCartTableViewCell*)
+        [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    cell.productName.text = [[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
+        if(cell == nil)
+            {
+                cell = [[ShoppingCartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
     
-    cell.productPrice.text = [NSString stringWithFormat:@"Price : %@",[[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductPrice"]];
+        cell.productName.text = [[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductName"];
     
-    PFFile *imageFile = [[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
+        cell.productPrice.text = [NSString stringWithFormat:@"Price : %@",[[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductPrice"]];
     
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-    {
-        if (!error)
-        {
-            cell.productImage.image = [UIImage imageWithData:data];
+        PFFile *imageFile = [[Cart objectAtIndex:indexPath.row]objectForKey:@"ProductImage"];
+
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+         {
+             if (!error)
+             {
+                 cell.productImage.image = [UIImage imageWithData:data];
+             }
+         }];
+    
+        return cell;
         }
-    }];
-    
-    return cell;
-    }
-    else if (indexPath.row==Cart.count)
-    {
-        NSArray *priceArray = [Cart valueForKey:@"ProductPrice"];
-        float totalprice = 0.0;
-        for (NSString *price in priceArray)
+        else if (indexPath.row==Cart.count)
         {
+            NSArray *priceArray = [Cart valueForKey:@"ProductPrice"];
+            float totalprice = 0.0;
+            for (NSString *price in priceArray)
+            {
             totalprice += [price floatValue];
-        }
-        static NSString *cellName = @"TotalAmountCell";
-        TotalAmountTableViewCell *totalAmountCell = (TotalAmountTableViewCell*)
-        [tableView dequeueReusableCellWithIdentifier:cellName];
-        if(totalAmountCell == nil)
-        {
-            totalAmountCell = [[TotalAmountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
-        }
+            }
+            static NSString *cellName = @"TotalAmountCell";
+            TotalAmountTableViewCell *totalAmountCell = (TotalAmountTableViewCell*)
+            [tableView dequeueReusableCellWithIdentifier:cellName];
+            if(totalAmountCell == nil)
+            {
+                totalAmountCell = [[TotalAmountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault   reuseIdentifier:cellName];
+            }
         
-        totalAmountCell.totalAmount.text = [NSString stringWithFormat:@"%f",totalprice];
+            totalAmountCell.totalAmount.text = [NSString stringWithFormat:@"%f",totalprice];
         
-        return totalAmountCell;
-    }
-    return nil;
+            return totalAmountCell;
+        }
+        return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,6 +146,15 @@
              self.numberOfItems.text = [NSString stringWithFormat:(@"%d Items in cart"),Cart.count];
              [self.shoppingCart reloadData];
          }];
+        
+        [cartQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            [Cart removeObjectAtIndex:indexPath.row];
+            
+            [[objects objectAtIndex:0] deleteInBackground];
+            self.numberOfItems.text = [NSString stringWithFormat:(@"%d Items in cart"),Cart.count];
+            [self.shoppingCart reloadData];
+        }];
     }
 }
 

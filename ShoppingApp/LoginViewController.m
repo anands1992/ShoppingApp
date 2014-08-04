@@ -30,11 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.Password.secureTextEntry = YES;
-    self.securityQuestion.hidden = YES;
-    self.securityQuestionAnswer.hidden = YES;
-    self.Submit.hidden = YES;
-    self.Cancel.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,63 +108,22 @@
              }
              else
              {
-                 self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y -200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
+                 [PFUser requestPasswordResetForEmailInBackground:self.userName.text];
+                 
+                 UIAlertView *alert = [[UIAlertView alloc]
+                                       
+                                       initWithTitle:@"Notification"
+                                       message: @"An E-Mail Has been sent to your registered address, you can reset your password from the link given in it"
+                                       delegate:nil
+                                       cancelButtonTitle:@"Dismiss"
+                                       otherButtonTitles:nil];
+                 [alert show];
 
-                 self.securityQuestion.text = [[objects objectAtIndex:0] valueForKey:@"SecurityQuestion"];
-                 self.Signup.hidden = YES;
-                 self.securityQuestion.hidden = NO;
-                 self.securityQuestionAnswer.hidden = NO;
-                 self.Submit.hidden = NO;
-                 self.Cancel.hidden = NO;
              }
          }];
     }
 }
 
-- (IBAction)Submit:(id)sender
-{
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"username" equalTo:self.userName.text];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if ([self.securityQuestionAnswer.text isEqualToString:[[objects objectAtIndex:0] valueForKey:@"SecurityQuestionAnswer"]])
-         {
-             [PFUser requestPasswordResetForEmailInBackground:self.userName.text];
-             
-             UIAlertView *alert = [[UIAlertView alloc]
-                                   
-                                   initWithTitle:@"Notification"
-                                         message: @"An E-Mail Has been sent to your registered address, you can reset your password from the link given in it"
-                                        delegate:nil
-                               cancelButtonTitle:@"Dismiss"
-                               otherButtonTitles:nil];
-             [alert show];
-             
-             self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
-             
-             self.securityQuestion.hidden = YES;
-             self.securityQuestionAnswer.hidden = YES;
-             self.Submit.hidden = YES;
-             self.Cancel.hidden = YES;
-             self.Signup.hidden = NO;
-         }
-         else
-         {
-             [self callAlert:@"Sorry, the answer you entered is wrong !!"];
-         }
-     }];
-}
-
-- (IBAction)Cancel:(id)sender
-{
-    self.loginFrame.frame = CGRectMake(self.loginFrame.frame.origin.x, self.loginFrame.frame.origin.y + 200, self.loginFrame.frame.size.width, self.loginFrame.frame.size.height);
-    
-    self.securityQuestion.hidden = YES;
-    self.securityQuestionAnswer.hidden = YES;
-    self.Submit.hidden = YES;
-    self.Cancel.hidden = YES;
-    self.Signup.hidden = NO;
-}
 
 //Function for Calling Alerts
 - (void) callAlert:(NSString*)alertMessage

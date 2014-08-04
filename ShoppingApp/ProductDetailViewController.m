@@ -133,6 +133,8 @@
             
             wishlist[@"ProductImage"] = [self.productDetailViews valueForKey:@"ProductImage"];
             
+            wishlist[@"ProductPrice"] =  [self.productDetailViews valueForKey:@"ProductPrice"];
+            
             PFUser *user = [PFUser currentUser];
             
             wishlist[@"User"] = user.email;
